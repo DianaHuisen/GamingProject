@@ -40,7 +40,7 @@ int main( int argc, char *argv[] ){
 	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "SFML window" };
     player square { window, sf::Vector2f{ 400.0 , 260.0 }, sf::Vector2f( 40 , 40) };
     wall wall_bottom { window, sf::Vector2f( 0, 360 ), sf::Vector2f( 640 , 20) };
-	wall test { window, sf::Vector2f( 5, 50 ), sf::Vector2f( 60 , 110) };
+	wall test { window, sf::Vector2f( 5, 300 ), sf::Vector2f( 60 , 280) };
 
 	action actions[] = {
         action( sf::Keyboard::Left,  [&](){ square.move( sf::Vector2f( -3.0,  0.0 )); }),
@@ -83,7 +83,7 @@ int main( int argc, char *argv[] ){
         wall_bottom.draw( window );
         test.draw(window);
         
-        square.update( wall_bottom );
+        square.update( wall_bottom , test);
         wall_bottom.update();
 		test.update();
         

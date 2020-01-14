@@ -17,10 +17,10 @@ void player::move( sf::Vector2f delta ){
 }
 
 
-void player::update( wall wall_bottom ){
+void player::update( wall wall_bottom , wall test){
     move(bouncy);
     hitbox = square.getGlobalBounds();
-    if (hitbox.intersects(wall_bottom.hitbox)){
+    if (hitbox.intersects(wall_bottom.hitbox) || hitbox.intersects(test.hitbox)){
         bouncy.y = 0;
         move(sf::Vector2f( 0.0, -2.0 ));
         square.setFillColor(sf::Color::Red);

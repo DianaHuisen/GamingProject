@@ -4,8 +4,6 @@
 #include "drawable.hpp"
 #include "player.hpp"
 #include "wall.hpp"
-//#include <Time.hpp>
-//#include "stdlib.h"
 
 class action {
 private:
@@ -49,39 +47,35 @@ int main( int argc, char *argv[] ){
 
 	};
 
-    const float maxY = 50;
-        const sf::Vector2f gravity(0.f, 1.f);
-        sf::Vector2f velocity(2.f, -30.f);
-
+    const float maxY = 40;
+        const sf::Vector2f gravity(0.0, 1.f);
+        sf::Vector2f velocity(0.0, -15.f);
+    bool jump = false;
     
 	while (window.isOpen()) {
 		for( auto & action : actions ){
 			action();
 		}
-
+        sf::FloatRect hitbox = square.hitbox;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-//            jumpStop=false;
-            square.move(velocity);
-//            std::cout<<velocity.y<<"\n";
-            if(velocity.y < maxY) velocity += gravity;
-            sf::FloatRect hitbox = square.hitbox;
+            jump = true;
             if (hitbox.intersects(wall_bottom.hitbox)){
-//                velocity.y=0;
-//                velocity.y=-30.f;
-//                square.move(sf::Vector2f(0.0,0.0));
-                //square.position.y += -1;
-                sf::sleep(sf::seconds(5));
-//            bouncy.y = 0;
-//            square.setFillColor(sf::Color::Red);
+                velocity.y=-15.f;
             }
+            sf::sleep (sf::milliseconds(8));
+            square.move(velocity);
+            if(velocity.y < maxY) velocity += gravity;
         }
-//        sf::FloatRect hitbox = square.hitbox;
-//        if (hitbox.intersects(wall_bottom.hitbox)){
-//            velocity.y=0;
-////            bouncy.y = 0;
-////            square.setFillColor(sf::Color::Red);
-//        }
-    
+        
+        if (hitbox.intersects(wall_bottom.hitbox)==false && jump == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
+             square.move(velocity);
+            if(velocity.y < maxY) velocity += gravity;
+            sf::sleep (sf::milliseconds(8));
+        }
+        if (hitbox.intersects(wall_bottom.hitbox) && jump == true){
+            jump = false;
+            velocity.y=-15.f;
+        }
 
 		window.clear();
         square.draw( window );

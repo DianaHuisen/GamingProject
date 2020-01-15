@@ -7,7 +7,7 @@
 
 class player: public drawable {
 public:
-    sf::RectangleShape player;
+    sf::RectangleShape acacia;
     sf::FloatRect hitbox;
     sf::Vector2f position;
     player( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );
@@ -16,7 +16,7 @@ public:
 
 	void move( sf::Vector2f delta );
 
-    void update( wall floor, wall platform);
+    void update( wall wall_bottom, wall test);
 
 
 private:

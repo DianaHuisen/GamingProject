@@ -38,13 +38,13 @@ int main( int argc, char *argv[] ){
 	std::cout << "Starting application 01-05 array of actions\n";
 
 	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "SFML window" };
-    player player { window, sf::Vector2f{ 400.0 , 260.0 }, sf::Vector2f( 40 , 40) };
+    player acacia { window, sf::Vector2f{ 400.0 , 260.0 }, sf::Vector2f( 40 , 40) };
     wall floor { window, sf::Vector2f( 0, 360 ), sf::Vector2f( 640 , 20) };
 	wall platform { window, sf::Vector2f( 5, 280 ), sf::Vector2f( 80 , 20) };
 
 	action actions[] = {
-        action( sf::Keyboard::Left,  [&](){ player.move( sf::Vector2f( -3.0,  0.0 )); }),
-		action( sf::Keyboard::Right, [&](){ player.move( sf::Vector2f( +3.0,  0.0 )); })
+        action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -3.0,  0.0 )); }),
+		action( sf::Keyboard::Right, [&](){ acacia.move( sf::Vector2f( +3.0,  0.0 )); })
 
 	};
 
@@ -57,19 +57,19 @@ int main( int argc, char *argv[] ){
 		for( auto & action : actions ){
 			action();
 		}
-        sf::FloatRect hitbox = player.hitbox;
+        sf::FloatRect hitbox = acacia.hitbox;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
             jump = true; 
             if (hitbox.intersects(floor.hitbox)){
                 velocity.y=-15.f;
             }
             sf::sleep (sf::milliseconds(8));
-            player.move(velocity);
+            acacia.move(velocity);
             if(velocity.y < maxY) velocity += gravity;
         }
         
         if (hitbox.intersects(floor.hitbox)==false && jump == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
-			player.move(velocity);
+			acacia.move(velocity);
             if(velocity.y < maxY) velocity += gravity;
             sf::sleep (sf::milliseconds(8));
 			if (hitbox.intersects(platform.hitbox)){
@@ -88,11 +88,11 @@ int main( int argc, char *argv[] ){
         }
 
 		window.clear();
-        player.draw( window );
+        acacia.draw( window );
         floor.draw( window );
         platform.draw(window);
         
-        player.update( floor , platform);
+        acacia.update( floor , platform);
         floor.update();
 		platform.update();
         

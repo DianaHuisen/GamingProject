@@ -7,7 +7,7 @@
 class wall: public drawable {
 public:
     sf::RectangleShape rectangle;
-    sf::FloatRect hitbox;
+//    sf::FloatRect hitbox;
     
     wall( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );
     

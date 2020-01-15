@@ -44,48 +44,15 @@ int main( int argc, char *argv[] ){
 
 	action actions[] = {
         action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -3.0,  0.0 )); }),
-		action( sf::Keyboard::Right, [&](){ acacia.move( sf::Vector2f( +3.0,  0.0 )); })
+		action( sf::Keyboard::Right, [&](){ acacia.move( sf::Vector2f( +3.0,  0.0 )); }),
+        action( sf::Keyboard::Up,    [&](){ acacia.jump( floor                     ); })
 
 	};
-
-    const float maxY = 40;
-        const sf::Vector2f gravity(0.0, 1.f);
-        sf::Vector2f velocity(0.0, -15.f);
-    bool jump = false;
     
 	while (window.isOpen()) {
 		for( auto & action : actions ){
 			action();
 		}
-        sf::FloatRect hitbox = acacia.hitbox;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-            jump = true; 
-            if (hitbox.intersects(floor.hitbox)){
-                velocity.y=-15.f;
-            }
-            sf::sleep (sf::milliseconds(8));
-            acacia.move(velocity);
-            if(velocity.y < maxY) velocity += gravity;
-        }
-        
-        if (hitbox.intersects(floor.hitbox)==false && jump == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
-			acacia.move(velocity);
-            if(velocity.y < maxY) velocity += gravity;
-            sf::sleep (sf::milliseconds(8));
-			if (hitbox.intersects(platform.hitbox)){
-            	jump = false;
-            	velocity.y=0;
-			}
-        }
-		
-        if (hitbox.intersects(floor.hitbox) && jump == true){
-            jump = false;
-            velocity.y=-15.f;
-        }
-		if (hitbox.intersects(platform.hitbox) && jump == true){
-            jump = false;
-            velocity.y=-15.f;
-        }
 
 		window.clear();
         acacia.draw( window );

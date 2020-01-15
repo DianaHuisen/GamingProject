@@ -16,7 +16,7 @@ public:
 
 	void move( sf::Vector2f delta );
 
-    void update( wall wall_bottom, wall test);
+    void update( wall floor, wall platform);
 
 
 private:

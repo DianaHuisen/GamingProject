@@ -39,8 +39,8 @@ int main( int argc, char *argv[] ){
 
 	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "SFML window" };
     player square { window, sf::Vector2f{ 400.0 , 260.0 }, sf::Vector2f( 40 , 40) };
-    wall wall_bottom { window, sf::Vector2f( 0, 360 ), sf::Vector2f( 640 , 20) };
-	wall test { window, sf::Vector2f( 5, 300 ), sf::Vector2f( 60 , 280) };
+    wall floor { window, sf::Vector2f( 0, 360 ), sf::Vector2f( 640 , 20) };
+	wall platform { window, sf::Vector2f( 5, 280 ), sf::Vector2f( 80 , 20) };
 
 	action actions[] = {
         action( sf::Keyboard::Left,  [&](){ square.move( sf::Vector2f( -3.0,  0.0 )); }),
@@ -59,8 +59,8 @@ int main( int argc, char *argv[] ){
 		}
         sf::FloatRect hitbox = square.hitbox;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-            jump = true;
-            if (hitbox.intersects(wall_bottom.hitbox)){
+            jump = true; 
+            if (hitbox.intersects(floor.hitbox)){
                 velocity.y=-15.f;
             }
             sf::sleep (sf::milliseconds(8));
@@ -68,24 +68,33 @@ int main( int argc, char *argv[] ){
             if(velocity.y < maxY) velocity += gravity;
         }
         
-        if (hitbox.intersects(wall_bottom.hitbox)==false && jump == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
-             square.move(velocity);
+        if (hitbox.intersects(floor.hitbox)==false && jump == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
+			square.move(velocity);
             if(velocity.y < maxY) velocity += gravity;
             sf::sleep (sf::milliseconds(8));
+			if (hitbox.intersects(platform.hitbox)){
+            	jump = false;
+            	velocity.y=0;
+			}
         }
-        if (hitbox.intersects(wall_bottom.hitbox) && jump == true){
+		
+        if (hitbox.intersects(floor.hitbox) && jump == true){
+            jump = false;
+            velocity.y=-15.f;
+        }
+		if (hitbox.intersects(platform.hitbox) && jump == true){
             jump = false;
             velocity.y=-15.f;
         }
 
 		window.clear();
         square.draw( window );
-        wall_bottom.draw( window );
-        test.draw(window);
+        floor.draw( window );
+        platform.draw(window);
         
-        square.update( wall_bottom , test);
-        wall_bottom.update();
-		test.update();
+        square.update( floor , platform);
+        floor.update();
+		platform.update();
         
 		window.display();
 

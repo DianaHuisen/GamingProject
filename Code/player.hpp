@@ -15,6 +15,8 @@ public:
     void draw( sf::RenderWindow & window ) override;
 
 	void move( sf::Vector2f delta );
+
+    void interact (wall object);
     
     void jump( wall floor );
 

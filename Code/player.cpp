@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "player.hpp"
+#include <iostream>
 
 player::player( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f size ) :
     drawable(window), position(position), size(size){
@@ -18,6 +19,14 @@ void player::draw( sf::RenderWindow & window ) {
 
 void player::move( sf::Vector2f delta ){
 	position += delta;
+}
+
+void player::interact(wall object){
+    hitbox = acacia.getGlobalBounds();
+    if(hitbox.intersects(object.hitbox)){
+        std::cout << "Poke\n";
+        sf::sleep (sf::milliseconds(15));
+    }
 }
 
 void player::jump(wall floor){

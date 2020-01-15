@@ -41,11 +41,13 @@ int main( int argc, char *argv[] ){
     player acacia { window, sf::Vector2f{ 400.0 , 260.0 }, sf::Vector2f( 40 , 40) };
     wall floor { window, sf::Vector2f( 0, 360 ), sf::Vector2f( 640 , 20) };
 	wall platform { window, sf::Vector2f( 5, 280 ), sf::Vector2f( 80 , 20) };
+	wall object {window, sf::Vector2f(100, 320), sf::Vector2f(20,20)};
 
 	action actions[] = {
         action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -3.0,  0.0 )); }),
 		action( sf::Keyboard::Right, [&](){ acacia.move( sf::Vector2f( +3.0,  0.0 )); }),
-        action( sf::Keyboard::Up,    [&](){ acacia.jump( floor                     ); })
+        action( sf::Keyboard::Up,    [&](){ acacia.jump( floor); }),
+		action( sf::Keyboard::E,	 [&](){ acacia.interact(object); })
 
 	};
     
@@ -58,10 +60,12 @@ int main( int argc, char *argv[] ){
         acacia.draw( window );
         floor.draw( window );
         platform.draw(window);
+		object.draw(window);
         
         acacia.update( floor , platform);
         floor.update();
 		platform.update();
+		object.update();
         
 		window.display();
 

@@ -43,6 +43,10 @@ int main( int argc, char *argv[] ){
 	wall platform { window, sf::Vector2f( 5, 280 ), sf::Vector2f( 80 , 20) };
 	wall object {window, sf::Vector2f(100, 320), sf::Vector2f(20,20)};
 
+    //2 lines below create the view window
+    sf::View view;
+    view.setSize(sf::Vector2f(400.f, 300.f));
+
 	action actions[] = {
         action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -3.0,  0.0 )); }),
 		action( sf::Keyboard::Right, [&](){ acacia.move( sf::Vector2f( +3.0,  0.0 )); }),
@@ -55,7 +59,10 @@ int main( int argc, char *argv[] ){
 		for( auto & action : actions ){
 			action();
 		}
-
+        //these 2 lines connect the view window to the player position
+        view.setCenter( acacia.position.x, acacia.position.y);
+        window.setView(view);
+        
 		window.clear();
         acacia.draw( window );
         floor.draw( window );

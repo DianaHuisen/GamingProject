@@ -7,9 +7,9 @@ player::player( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f s
         }
 
 void player::draw( sf::RenderWindow & window ) {
-    square.setSize(sf::Vector2f(size));
-	square.setPosition(position);
-	window.draw(square);
+    player.setSize(sf::Vector2f(size));
+	player.setPosition(position);
+	window.draw(player);
 }
 
 void player::move( sf::Vector2f delta ){
@@ -19,15 +19,15 @@ void player::move( sf::Vector2f delta ){
 
 void player::update( wall floor , wall platform){
     move(bouncy);
-    hitbox = square.getGlobalBounds();
+    hitbox = player.getGlobalBounds();
     if (hitbox.intersects(floor.hitbox)){
         bouncy.y = 0;
         move(sf::Vector2f( 0.0, -2.0 ));
-        square.setFillColor(sf::Color::Red);
+        player.setFillColor(sf::Color::Red);
     }
     if (hitbox.intersects(platform.hitbox)){
         bouncy.y = 1;
         move(sf::Vector2f( 0.0, -2.0 ));
-        square.setFillColor(sf::Color::Red);
+        player.setFillColor(sf::Color::Red);
     }
 }

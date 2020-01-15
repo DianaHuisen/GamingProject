@@ -7,7 +7,7 @@
 
 class player: public drawable {
 public:
-    sf::RectangleShape square;
+    sf::RectangleShape player;
     sf::FloatRect hitbox;
     sf::Vector2f position;
     player( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );

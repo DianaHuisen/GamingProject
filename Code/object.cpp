@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "wall.hpp"
+#include "floor.hpp"
 #include <iostream>
 
 wall::wall( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f size ) :
@@ -11,8 +11,6 @@ void wall::draw( sf::RenderWindow & window ){
     rectangle.setFillColor(sf::Color( 0, 200, 0));
     window.draw(rectangle);
 }
-void wall::update(){
+void wall::update( player acacia ){
     hitbox = rectangle.getGlobalBounds();
 }
-
-

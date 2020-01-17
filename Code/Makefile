@@ -9,10 +9,10 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := player.cpp wall.cpp
+SOURCES := rectangle.cpp floor.cpp platform.cpp player.cpp object.cpp
 
 # header files in this project
-HEADERS := drawable.hpp player.hpp wall.hpp
+HEADERS := drawable.hpp rectangle.hpp floor.hpp platform.hpp player.hpp object.hpp
 
 # other places to look for files for this project
 SEARCH  := 

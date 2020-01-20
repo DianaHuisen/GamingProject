@@ -16,6 +16,8 @@ public:
     
     void draw( sf::RenderWindow & window ) override;
     void update( player acacia );
+    void interact(player acacia);
+    void text(player acacia);
 
 private:
 	sf::Vector2f position;

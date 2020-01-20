@@ -5,6 +5,7 @@
 #include "player.hpp"
 #include "floor.hpp"
 #include "platform.hpp" 
+#include "object.hpp"
 
 class action {
 private:
@@ -43,7 +44,9 @@ int main( int argc, char *argv[] ){
     floor Floor { window, sf::Vector2f( 0, 360 ), sf::Vector2f( 640 , 20) };
     floor test { window, sf::Vector2f( 540, 320 ), sf::Vector2f( 640 , 20) };
 	platform One{ window, sf::Vector2f( 5, 280 ), sf::Vector2f( 80 , 20) };
-//	wall object {window, sf::Vector2f(100, 320), sf::Vector2f(20,20)};
+	platform Two{ window, sf::Vector2f( 120, 200 ), sf::Vector2f( 80 , 20) };
+	object item {window, sf::Vector2f(100, 320), sf::Vector2f(20,20)};
+
 
     //2 lines below create the view window
 //    sf::View view;
@@ -53,7 +56,7 @@ int main( int argc, char *argv[] ){
         action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -3.0,  0.0 )); }),
 		action( sf::Keyboard::Right, [&](){ acacia.move( sf::Vector2f( +3.0,  0.0 )); }),
         action( sf::Keyboard::Up,    [&](){ acacia.jump( ); }),
-//		action( sf::Keyboard::E,	 [&](){ acacia.interact(object); })
+		action( sf::Keyboard::E,	 [&](){ item.interact(acacia);})
 
 	};
     
@@ -70,14 +73,14 @@ int main( int argc, char *argv[] ){
         Floor.draw( window );
         test.draw( window );
         One.draw(window);
-//		object.draw(window);
+		item.draw(window);
         
         acacia.update( );
         
 		One.update(acacia);
         test.update( acacia );
         Floor.update( acacia );
-//		object.update(acacia);
+		item.update(acacia);
         
 		window.display();
 

@@ -39,7 +39,7 @@ public:
 int main( int argc, char *argv[] ){
 	std::cout << "Starting application 01-05 array of actions\n";
 
-	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "SFML window" };
+	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
     player acacia { window, sf::Vector2f{ 400.0 , 40.0 }, sf::Vector2f( 40 , 40) };
     floor Floor { window, sf::Vector2f( 0, 360 ), sf::Vector2f( 640 , 20) };
     floor test { window, sf::Vector2f( 540, 320 ), sf::Vector2f( 640 , 20) };
@@ -49,8 +49,8 @@ int main( int argc, char *argv[] ){
 
 
     //2 lines below create the view window
-//    sf::View view;
-//    view.setSize(sf::Vector2f(400.f, 300.f));
+	sf::View view;
+	view.setSize(sf::Vector2f(400.f, 300.f));
 
 	action actions[] = {
         action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -3.0,  0.0 )); }),
@@ -61,20 +61,23 @@ int main( int argc, char *argv[] ){
 	};
     
 	while (window.isOpen()) {
-		for( auto & action : actions ){
-			action();
-		}
-        //these 2 lines connect the view window to the player position
-//        view.setCenter( acacia.position.x, acacia.position.y);
-//        window.setView(view);
-//        
 		window.clear();
+		
+
+        //these 2 lines connect the view window to the player position
+		view.setCenter( acacia.position.x, acacia.position.y);
+		window.setView(view);
+  
         acacia.draw( window );
         Floor.draw( window );
         test.draw( window );
         One.draw(window);
 		item.draw(window);
         
+		for( auto & action : actions ){
+			action();
+		}
+
         acacia.update( );
         
 		One.update(acacia);

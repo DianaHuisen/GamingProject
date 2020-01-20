@@ -31,12 +31,17 @@ void floor::update( player & acacia ){
     }
     
     if (hitbox.intersects(acacia.hitbox)){
+        acacia.onGround=true;
+        acacia.acacia.setFillColor(sf::Color::Green);
         acacia.velocity.y = 0.0;
-        acacia.move(sf::Vector2f( 0.0, -1.0 ));
+        acacia.move(sf::Vector2f( 0.0, -2.0 ));
         if (acacia.jumping){
             acacia.jumping = false;
             acacia.velocity.y=-15.0;
         }
+    }else{
+        acacia.onGround=false;
+        acacia.acacia.setFillColor(sf::Color::Red);
     }
 //    if (hitbox.intersects(platform.hitbox)){
 //        bouncy.y = 1;

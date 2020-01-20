@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include "player.hpp"
 #include <iostream>
 
@@ -54,7 +54,13 @@ void player::jump( ){
 void player::update(){
     hitbox = acacia.getGlobalBounds();
 //    move(bouncy);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+        firstJump=false;
+    }else{
+        firstJump=true;
+    }
     move(velocity);
+    
 //    if(jumping){
 //        acacia.setFillColor(sf::Color::Cyan);
 //    }else{

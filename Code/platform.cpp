@@ -16,7 +16,9 @@ void platform::update( player & acacia ){
     hitbox = rect.getGlobalBounds();
     std::cout << acacia.velocity.y << "\n";
     
-//    if (hitbox.intersects(acacia.hitbox)==false && acacia.jumping == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
+    if (hitbox.intersects(acacia.hitbox)==false && !acacia.onGround && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
+        acacia.jumping=true;
+    }
 //        if(acacia.velocity.y < acacia.maxY){
 //            acacia.velocity += acacia.gravity;
 //        }
@@ -33,13 +35,15 @@ void platform::update( player & acacia ){
             std::cout << "GOINGDOWN\n";
             
         }
-        acacia.velocity.y = 0.0;
+        
         std::cout << "RESET\n";
         acacia.move(sf::Vector2f( 0.0, -2.0 ));
         if (acacia.jumping){
             std::cout << "EXJUMP\n";
             acacia.jumping = false;
             acacia.velocity.y=-15.0;
+        }else{
+            acacia.velocity.y = 0.0;
         }
     }
 }

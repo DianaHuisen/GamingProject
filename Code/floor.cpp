@@ -22,37 +22,20 @@ void floor::update( player & acacia ){
         if(acacia.velocity.y < acacia.maxY){
             acacia.velocity += acacia.gravity;
         }
-        sf::sleep (sf::milliseconds(8));
-//        if (hitbox.intersects(platform.hitbox)){
-//            jumping = false;
-//            velocity.y=0;
-//        }
         acacia.bouncy=acacia.velocity;
     }
     
     if (hitbox.intersects(acacia.hitbox)){
         acacia.onGround=true;
-        acacia.acacia.setFillColor(sf::Color::Green);
         acacia.velocity.y = 0.0;
-        acacia.move(sf::Vector2f( 0.0, -2.0 ));
         if (acacia.jumping){
             acacia.jumping = false;
             acacia.velocity.y=-15.0;
         }
+         acacia.position.y = hitbox.top-(acacia.size.y);
     }else{
         acacia.onGround=false;
-        acacia.acacia.setFillColor(sf::Color::Red);
     }
-//    if (hitbox.intersects(platform.hitbox)){
-//        bouncy.y = 1;
-//        acacia.setFillColor(sf::Color::Blue);
-//        move(sf::Vector2f( 0.0, -2.0 ));
-//        if (jumping){
-//            jumping = false;
-//            velocity.y=-15.f;
-//        }
-//    }
-    
 }
 
 

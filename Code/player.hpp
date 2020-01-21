@@ -8,11 +8,11 @@
 class player: public drawable {
 public:
     sf::RectangleShape acacia;
-//    sf::FloatRect hitbox;
     sf::Vector2f position;
     bool jumping;
     bool firstJump;
     bool onGround;
+    bool onPlatform;
     float maxY;
     sf::Vector2f velocity;
 	sf::Vector2f size;
@@ -22,18 +22,10 @@ public:
     void draw( sf::RenderWindow & window ) override;
 
 	void move( sf::Vector2f delta );
-
-//    void interact (wall object);
-//    
+  
     void jump( );
-//
-//    void update( wall wall_bottom, wall test);
 
     void update();
-
-
-//private:
-
 };
 
 #endif

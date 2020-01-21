@@ -15,7 +15,6 @@ void object::draw( sf::RenderWindow & window ){
 void object::interact(player acacia){
     hitbox = rectangle.getGlobalBounds();
     if(hitbox.intersects(acacia.hitbox)){
-        std::cout << "I got poked\n";
         text(acacia);
     }
 }

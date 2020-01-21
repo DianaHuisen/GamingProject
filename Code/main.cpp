@@ -50,7 +50,7 @@ int main( int argc, char *argv[] ){
 
     //2 lines below create the view window
 	sf::View view;
-	view.setSize(sf::Vector2f(400.f, 300.f));
+	view.setSize(sf::Vector2f(500.f, 400.f));
 
 	action actions[] = {
         action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -3.0,  0.0 )); }),
@@ -59,11 +59,31 @@ int main( int argc, char *argv[] ){
 		action( sf::Keyboard::E,	 [&](){ item.interact(acacia);})
 
 	};
+	
+	window.clear();
+
+	///Starting story
+	sf::Font font;
+    sf::Text text;
+    text.setFont(font);
+    if (!font.loadFromFile("aller.ttf")){
+   		// error...
+    }
+    else{
+		text.setString("You've fallen from the tree!\nFind your way back home by jumping\nthrough the branches and learning\nnew skills.");
+		text.setPosition(sf::Vector2f( 450.0,  100.0 ));
+        text.setCharacterSize(30);
+        text.setFillColor(sf::Color::White);
+		window.draw(text);
+	}
+
+	window.display();
+
+	sf::sleep(sf::seconds(5));
     
 	while (window.isOpen()) {
 		window.clear();
 		
-
         //these 2 lines connect the view window to the player position
 		view.setCenter( acacia.position.x, acacia.position.y);
 		window.setView(view);

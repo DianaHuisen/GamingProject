@@ -26,6 +26,9 @@ public:
     void jump( );
 
     void update();
+    
+private:
+    int counter=0;
 };
 
 #endif

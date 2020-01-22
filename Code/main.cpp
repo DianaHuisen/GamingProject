@@ -40,7 +40,7 @@ int main( int argc, char *argv[] ){
 	std::cout << "Starting application 01-05 array of actions\n";
 
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
-    player acacia { window, sf::Vector2f{ 400.0 , 40.0 }, sf::Vector2f( 40 , 40) };
+    player acacia { window, sf::Vector2f{ 400.0 , 40.0 }, sf::Vector2f( 30 , 68) };
     floor Floor { window, sf::Vector2f( 0, 360 ), sf::Vector2f( 640 , 20) };
     floor test { window, sf::Vector2f( 540, 320 ), sf::Vector2f( 640 , 20) };
 	platform One{ window, sf::Vector2f( 5, 280 ), sf::Vector2f( 80 , 20) };

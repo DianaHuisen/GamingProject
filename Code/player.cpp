@@ -120,6 +120,12 @@ void player::draw( sf::RenderWindow & window ) {
 
 void player::move( sf::Vector2f delta ){
 	position += delta;
+    if (delta.x>0){
+        left=false;
+    }else if(delta.x<0){
+        left=true;
+    }
+//    velocity += delta;
 }
 
 void player::jump( ){

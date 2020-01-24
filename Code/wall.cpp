@@ -14,13 +14,17 @@ void wall::update( player & acacia ){
     hitbox = rect.getGlobalBounds();
     
     if (hitbox.intersects(acacia.hitbox)){
-        if (acacia.velocity.x>0){
+        if (acacia.left){
             acacia.move(sf::Vector2f(10.0, 0.0));
-            rect.setFillColor(sf::Color( 0, 100, 0 ));
-        }else if (acacia.velocity.x<0){
-            acacia.move(sf::Vector2f(10.0, 0.0));
-            rect.setFillColor(sf::Color( 100, 0, 0 ));
+//            rect.setFillColor(sf::Color( 0, 100, 0 ));
+        }else{
+            acacia.move(sf::Vector2f(-10.0, 0.0));
+//            rect.setFillColor(sf::Color( 0, 0, 100 ));
         }
+//        }else if (!acacia.left){
+//            acacia.move(sf::Vector2f(5.0, 0.0));
+//            rect.setFillColor(sf::Color( 100, 0, 0 ));
+//        }
 //        else{
 //            rect.setFillColor(sf::Color( 0, 0, 200 ));
 //        }

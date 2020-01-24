@@ -9,6 +9,7 @@ public:
     sf::RectangleShape acacia;
     sf::Vector2f position;
     bool jumping;
+    bool left;
     float maxY;
     sf::Vector2f velocity;
 	sf::Vector2f size;

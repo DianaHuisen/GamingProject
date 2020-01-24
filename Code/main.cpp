@@ -44,9 +44,11 @@ int main( int argc, char *argv[] ){
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
     player acacia { window, sf::Vector2f{ 400.0 , 40.0 }, sf::Vector2f( 30 , 68) };
     floor Floor { window, sf::Vector2f( 0, 850 ), sf::Vector2f( 2000 , 20) };
-    floor test { window, sf::Vector2f( 540, 830 ), sf::Vector2f( 640 , 20) };
+    floor bump { window, sf::Vector2f( 540, 830 ), sf::Vector2f( 640 , 20) };
 	platform One{ window, sf::Vector2f( 5, 700 ), sf::Vector2f( 80 , 20) };
 	platform Two{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
+    wall left { window, sf::Vector2f( 1000, 0 ), sf::Vector2f( 50 , 900) };
+    wall right { window, sf::Vector2f( 0, 0 ), sf::Vector2f( 50 , 900) };
 	object item {window, sf::Vector2f(100, 320), sf::Vector2f(20,20)};
 
 
@@ -92,7 +94,8 @@ int main( int argc, char *argv[] ){
   
         acacia.draw( window );
         Floor.draw( window );
-        test.draw( window );
+        left.draw( window );
+        right.draw( window );
         One.draw(window);
         Two.draw(window);
 		item.draw(window);
@@ -105,7 +108,8 @@ int main( int argc, char *argv[] ){
         
 		One.update(acacia);
         Two.update(acacia);
-        test.update( acacia );
+        left.update( acacia );
+        right.update(acacia);
         Floor.update( acacia );
 		item.update(acacia);
         

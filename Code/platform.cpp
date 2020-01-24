@@ -40,7 +40,7 @@ void platform::update( player & acacia ){
         }
         if (acacia.jumping){
             acacia.jumping = false;
-             acacia.velocity.y=-15.0;
+             acacia.velocity.y=-19.0;
         }
         else{
             acacia.velocity.y = 0.0;

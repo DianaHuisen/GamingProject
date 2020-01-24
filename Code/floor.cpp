@@ -30,7 +30,7 @@ void floor::update( player & acacia ){
         acacia.velocity.y = 0.0;
         if (acacia.jumping){
             acacia.jumping = false;
-            acacia.velocity.y=-15.0;
+            acacia.velocity.y=-19.0;
         }
          acacia.position.y = hitbox.top-(acacia.size.y);
     }else{

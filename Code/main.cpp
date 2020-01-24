@@ -32,6 +32,7 @@ public:
 	void operator()(){
 		if( condition() ){
 			work();
+            
 		}
 	}
 };
@@ -41,10 +42,10 @@ int main( int argc, char *argv[] ){
 
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
     player acacia { window, sf::Vector2f{ 400.0 , 40.0 }, sf::Vector2f( 30 , 68) };
-    floor Floor { window, sf::Vector2f( 0, 360 ), sf::Vector2f( 640 , 20) };
-    floor test { window, sf::Vector2f( 540, 320 ), sf::Vector2f( 640 , 20) };
-	platform One{ window, sf::Vector2f( 5, 280 ), sf::Vector2f( 80 , 20) };
-	platform Two{ window, sf::Vector2f( 120, 200 ), sf::Vector2f( 80 , 20) };
+    floor Floor { window, sf::Vector2f( 0, 850 ), sf::Vector2f( 2000 , 20) };
+    floor test { window, sf::Vector2f( 540, 830 ), sf::Vector2f( 640 , 20) };
+	platform One{ window, sf::Vector2f( 5, 700 ), sf::Vector2f( 80 , 20) };
+	platform Two{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
 	object item {window, sf::Vector2f(100, 320), sf::Vector2f(20,20)};
 
 
@@ -53,33 +54,33 @@ int main( int argc, char *argv[] ){
 	view.setSize(sf::Vector2f(500.f, 400.f));
 
 	action actions[] = {
-        action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -3.0,  0.0 )); }),
-		action( sf::Keyboard::Right, [&](){ acacia.move( sf::Vector2f( +3.0,  0.0 )); }),
+        action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -5.0,  0.0 )); }),
+		action( sf::Keyboard::Right, [&](){ acacia.move( sf::Vector2f( +5.0,  0.0 )); }),
         action( sf::Keyboard::Up,    [&](){ acacia.jump( ); }),
 		action( sf::Keyboard::E,	 [&](){ item.interact(acacia);})
 
 	};
 	
-	window.clear();
-
-	///Starting story
-	sf::Font font;
-    sf::Text text;
-    text.setFont(font);
-    if (!font.loadFromFile("aller.ttf")){
-   		// error...
-    }
-    else{
-		text.setString("You've fallen from the tree!\nFind your way back home by jumping\nthrough the branches and learning\nnew skills.");
-		text.setPosition(sf::Vector2f( 450.0,  100.0 ));
-        text.setCharacterSize(30);
-        text.setFillColor(sf::Color::White);
-		window.draw(text);
-	}
-
-	window.display();
-
-	sf::sleep(sf::seconds(5));
+//	window.clear();
+//
+//	///Starting story
+//	sf::Font font;
+//    sf::Text text;
+//    text.setFont(font);
+//    if (!font.loadFromFile("aller.ttf")){
+//   		// error...
+//    }
+//    else{
+//		text.setString("You've fallen from the tree!\nFind your way back home by jumping\nthrough the branches and learning\nnew skills.");
+//		text.setPosition(sf::Vector2f( 450.0,  100.0 ));
+//        text.setCharacterSize(30);
+//        text.setFillColor(sf::Color::White);
+//		window.draw(text);
+//	}
+//
+//	window.display();
+//
+//	sf::sleep(sf::seconds(5));
     
 	while (window.isOpen()) {
 		window.clear();
@@ -92,6 +93,7 @@ int main( int argc, char *argv[] ){
         Floor.draw( window );
         test.draw( window );
         One.draw(window);
+        Two.draw(window);
 		item.draw(window);
         
 		for( auto & action : actions ){
@@ -101,6 +103,7 @@ int main( int argc, char *argv[] ){
         acacia.update( );
         
 		One.update(acacia);
+        Two.update(acacia);
         test.update( acacia );
         Floor.update( acacia );
 		item.update(acacia);

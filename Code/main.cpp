@@ -6,7 +6,7 @@
 #include "floor.hpp"
 #include "platform.hpp" 
 #include "object.hpp"
-#include "rectangle.hpp"
+#include "wall.hpp"
 
 class action {
 private:

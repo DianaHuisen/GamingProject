@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include "platform.hpp"
 #include <iostream>
 
@@ -8,7 +7,6 @@ platform::platform( sf::RenderWindow & window, sf::Vector2f position, sf::Vector
 void platform::draw( sf::RenderWindow & window ){
     rect.setSize(sf::Vector2f(size));
     rect.setPosition(position);
-//    rect.setFillColor(sf::Color( 0, 200, 0));
     window.draw(rect);
 }
 
@@ -22,12 +20,10 @@ void platform::update( player & acacia ){
         if(acacia.velocity.y < acacia.maxY){
             acacia.velocity += acacia.gravity;
         }
-        acacia.onPlatform = false;
         if (acacia.jumping){
             acacia.jumping = false;
         }
         if(hitbox.intersects(acacia.hitbox)){
-            acacia.onPlatform=true;
             acacia.jumping = false;
             acacia.velocity.y= 0.0;
             acacia.position.y = hitbox.top-(acacia.size.y);

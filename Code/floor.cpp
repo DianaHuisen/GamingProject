@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include "floor.hpp"
 #include <iostream>
 
@@ -22,19 +21,15 @@ void floor::update( player & acacia ){
         if(acacia.velocity.y < acacia.maxY){
             acacia.velocity += acacia.gravity;
         }
-        acacia.bouncy=acacia.velocity;
     }
     
     if (hitbox.intersects(acacia.hitbox)){
-        acacia.onGround=true;
         acacia.velocity.y = 0.0;
         if (acacia.jumping){
             acacia.jumping = false;
             acacia.velocity.y=-19.0;
         }
          acacia.position.y = hitbox.top-(acacia.size.y);
-    }else{
-        acacia.onGround=false;
     }
 }
 

@@ -8,10 +8,8 @@
 
 class platform: public rectangle {
 public:
-//    sf::RectangleShape rectangle;
-//    sf::FloatRect hitbox;
     
-    platform( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );
+    platform( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f size );
     
     void draw( sf::RenderWindow & window ) override;
     void update( player & acacia );

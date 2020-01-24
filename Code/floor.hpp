@@ -8,8 +8,6 @@
 
 class floor: public rectangle {
 public:
-//    sf::RectangleShape rectangle;
-//    sf::FloatRect hitbox;
     
     floor( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );
     

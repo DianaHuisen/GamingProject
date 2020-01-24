@@ -12,7 +12,8 @@ void platform::draw( sf::RenderWindow & window ){
 
 void platform::update( player & acacia ){
     hitbox = rect.getGlobalBounds();
-
+    hitboxBigger = rect.getGlobalBounds();
+    hitboxBigger.top = hitboxBigger.top - 2;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
 
         if(acacia.velocity.y < acacia.maxY){
@@ -21,7 +22,7 @@ void platform::update( player & acacia ){
         if (acacia.jumping){
             acacia.jumping = false;
         }
-        if(hitbox.intersects(acacia.hitbox)){
+        if(hitboxBigger.intersects(acacia.hitbox)){
             acacia.jumping = false;
             acacia.velocity.y= 0.0;
             acacia.position.y = hitbox.top-(acacia.size.y);

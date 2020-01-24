@@ -124,6 +124,7 @@ void player::move( sf::Vector2f delta ){
 
 void player::jump( ){
     hitbox = acacia.getGlobalBounds();
+//    hitboxTest = acacia.getGlobalBounds();
     jumping = true;
 
     if(velocity.y < maxY) {
@@ -133,6 +134,7 @@ void player::jump( ){
 
 void player::update(){
     hitbox = acacia.getGlobalBounds();
+//    hitboxTest = acacia.getGlobalBounds();
     move(velocity);
 }
 

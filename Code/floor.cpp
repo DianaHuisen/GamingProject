@@ -13,23 +13,35 @@ void floor::draw( sf::RenderWindow & window ){
 void floor::update( player & acacia ){
 
     hitbox = rect.getGlobalBounds();
-    if (hitbox.intersects(acacia.hitbox)){
-        acacia.velocity.y=0.0;
-    }
-    
-    if (hitbox.intersects(acacia.hitbox)==false && acacia.jumping == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
+    hitboxBigger = rect.getGlobalBounds();
+    hitboxBigger.top = hitboxBigger.top -2 ;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
+
         if(acacia.velocity.y < acacia.maxY){
             acacia.velocity += acacia.gravity;
         }
-    }
-    
-    if (hitbox.intersects(acacia.hitbox)){
-        acacia.velocity.y = 0.0;
         if (acacia.jumping){
             acacia.jumping = false;
-            acacia.velocity.y=-19.0;
         }
-         acacia.position.y = hitbox.top-(acacia.size.y);
+        if(hitboxBigger.intersects(acacia.hitbox)){
+            acacia.jumping = false;
+            acacia.velocity.y= 0.0;
+            acacia.position.y = hitbox.top-(acacia.size.y);
+        }
+    }
+
+    if ((hitbox.intersects(acacia.hitbox)) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==true){
+        if(acacia.velocity.y < acacia.maxY){
+            acacia.velocity += acacia.gravity;
+        }
+        if (acacia.jumping){
+            acacia.jumping = false;
+             acacia.velocity.y=-19.0;
+        }
+        else{
+            acacia.velocity.y = 0.0;
+        }
     }
 }
 

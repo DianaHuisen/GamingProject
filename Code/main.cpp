@@ -64,26 +64,43 @@ int main( int argc, char *argv[] ){
 
 	};
 	
-//	window.clear();
-//
-//	///Starting story
-//	sf::Font font;
-//    sf::Text text;
-//    text.setFont(font);
-//    if (!font.loadFromFile("aller.ttf")){
-//   		// error...
-//    }
-//    else{
-//		text.setString("You've fallen from the tree!\nFind your way back home by jumping\nthrough the branches and learning\nnew skills.");
-//		text.setPosition(sf::Vector2f( 450.0,  100.0 ));
-//        text.setCharacterSize(30);
-//        text.setFillColor(sf::Color::White);
-//		window.draw(text);
-//	}
-//
-//	window.display();
-//
-//	sf::sleep(sf::seconds(5));
+	window.clear();
+
+	///Startingscreen setup
+	sf::Font font;
+	sf::Text text;
+	sf::Text contin;
+	text.setFont(font);
+	contin.setFont(font);
+	if (!font.loadFromFile("aller.ttf")){
+		// error...
+	}
+	else{
+		//Storytext
+		text.setString("You've fallen from the tree!\nFind your way back home by jumping\nthrough the branches and learning\nnew skills.");
+		text.setPosition(sf::Vector2f( 450.0, 100.0 ));
+		text.setCharacterSize(30);
+		text.setFillColor(sf::Color::White);
+		
+		//Spacebar text
+		contin.setString("Press spacebar to continue");
+		contin.setPosition(sf::Vector2f( 450.0, 600.0 ));
+		contin.setCharacterSize(30);
+		contin.setFillColor(sf::Color::White);
+
+		window.draw(contin); 
+		window.draw(text);
+	}
+	while(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) == false){
+		window.display();
+		sf::Event event; 
+		while( window.pollEvent(event) ){
+			if( event.type == sf::Event::Closed ){
+				window.close();
+			}
+		} 
+	}
+
     
 	while (window.isOpen()) {
 		window.clear();

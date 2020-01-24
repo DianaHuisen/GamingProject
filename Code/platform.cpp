@@ -11,11 +11,12 @@ void platform::draw( sf::RenderWindow & window ){
 }
 
 void platform::update( player & acacia ){
+    
     hitbox = rect.getGlobalBounds();
     hitboxBigger = rect.getGlobalBounds();
     hitboxBigger.top = hitboxBigger.top - 2;
+    
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
-
         if(acacia.velocity.y < acacia.maxY){
             acacia.velocity += acacia.gravity;
         }

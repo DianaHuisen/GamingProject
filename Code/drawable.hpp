@@ -6,6 +6,7 @@ protected:
    sf::RenderWindow & window;
    
 public:
+
     sf::FloatRect hitboxBigger;
     sf::FloatRect hitbox;
     sf::Vector2f gravity;

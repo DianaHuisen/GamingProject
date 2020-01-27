@@ -39,6 +39,7 @@ public:
 };
 
 int main( int argc, char *argv[] ){
+    int level=1;
 	std::cout << "Starting application 01-05 array of actions\n";
 
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
@@ -56,6 +57,7 @@ int main( int argc, char *argv[] ){
     wall left { window, sf::Vector2f( 2000, 0 ), sf::Vector2f( 50 , 900) };
     wall right { window, sf::Vector2f( -50, 0 ), sf::Vector2f( 50 , 900) };
 	object item {window, sf::Vector2f(100, 300), sf::Vector2f(20,20)};
+
 
 
     //2 lines below create the view window
@@ -115,6 +117,10 @@ int main( int argc, char *argv[] ){
 		view.setCenter( acacia.position.x, acacia.position.y);
 		window.setView(view);
   
+        if (item.pickedUp){
+            level=2;
+        }
+        if (level==1){
         acacia.draw( window );
         first.draw( window );
         second.draw( window );
@@ -130,10 +136,16 @@ int main( int argc, char *argv[] ){
         Six.draw(window);
 		item.draw(window);
         
+        }else{
+           acacia.draw( window );
+            Floor.draw( window ); 
+        }
+        
 		for( auto & action : actions ){
 			action();
 		}
-
+        
+        if (level==1){
         acacia.update( );
         first.update(acacia);
         second.update(acacia);
@@ -148,6 +160,11 @@ int main( int argc, char *argv[] ){
         bump.update( acacia );
         Floor.update( acacia );
 		item.update(acacia);
+        
+        }else{
+            acacia.update();
+            Floor.update(acacia);
+        }
         
 		window.display();
 

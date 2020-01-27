@@ -2,7 +2,7 @@
 #include <iostream>
 
 object::object( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f size ) :
-    drawable(window), position(position), size(size){}
+    drawable(window), position(position), size(size){pickedUp=false;}
 
 void object::draw( sf::RenderWindow & window ){
     rectangle.setSize(sf::Vector2f(size));
@@ -15,6 +15,7 @@ void object::interact(player acacia){
     hitbox = rectangle.getGlobalBounds();
     if(hitbox.intersects(acacia.hitbox)){
         text(acacia);
+        pickedUp=true;
     }
 }
 

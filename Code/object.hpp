@@ -8,6 +8,7 @@
 
 class object: public drawable {
 public:
+    bool pickedUp;
     sf::RectangleShape rectangle;
     
     object( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );

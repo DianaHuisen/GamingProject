@@ -46,17 +46,24 @@ int main( int argc, char *argv[] ){
     player acacia { window, sf::Vector2f{ 0 , 780 }, sf::Vector2f( 30 , 68) };
     floor Floor { window, sf::Vector2f( 0, 850 ), sf::Vector2f( 2000 , 20) };
     floor bump { window, sf::Vector2f( 540, 800 ), sf::Vector2f( 640 , 20) };
-	platform One{ window, sf::Vector2f( 250, 700 ), sf::Vector2f( 80 , 20) };
-	platform Two{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
-    platform Three{ window, sf::Vector2f( 250, 400 ), sf::Vector2f( 80 , 20) };
-    platform Four{ window, sf::Vector2f( 500, 450 ), sf::Vector2f( 80 , 20) };
-    platform Five{ window, sf::Vector2f( 750, 500 ), sf::Vector2f( 80 , 20) };
-    platform Six{ window, sf::Vector2f( 80, 320 ), sf::Vector2f( 80 , 20) };
-    wall first { window, sf::Vector2f( 250, 700 ), sf::Vector2f( 50 , 900) };
-    wall second { window, sf::Vector2f( 750, 500 ), sf::Vector2f( 50 , 900) };
+	platform level1_1{ window, sf::Vector2f( 250, 700 ), sf::Vector2f( 80 , 20) };
+	platform level1_2{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
+    platform level1_3{ window, sf::Vector2f( 250, 400 ), sf::Vector2f( 80 , 20) };
+    platform level1_4{ window, sf::Vector2f( 500, 450 ), sf::Vector2f( 80 , 20) };
+    platform level1_5{ window, sf::Vector2f( 750, 500 ), sf::Vector2f( 80 , 20) };
+    platform level1_6{ window, sf::Vector2f( 80, 320 ), sf::Vector2f( 80 , 20) };
+    wall wall1_1 { window, sf::Vector2f( 250, 700 ), sf::Vector2f( 50 , 900) };
+    wall wall1_2 { window, sf::Vector2f( 750, 500 ), sf::Vector2f( 50 , 900) };
     wall left { window, sf::Vector2f( 2000, 0 ), sf::Vector2f( 50 , 900) };
     wall right { window, sf::Vector2f( -50, 0 ), sf::Vector2f( 50 , 900) };
 	object item {window, sf::Vector2f(100, 300), sf::Vector2f(20,20)};
+
+	platform level2_1{ window, sf::Vector2f( 250, 700 ), sf::Vector2f( 80 , 20) };
+	platform level2_2{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
+    platform level2_3{ window, sf::Vector2f( 250, 400 ), sf::Vector2f( 80 , 20) };
+    platform level2_4{ window, sf::Vector2f( 500, 450 ), sf::Vector2f( 80 , 20) };
+    platform level2_5{ window, sf::Vector2f( 750, 500 ), sf::Vector2f( 80 , 20) };
+    platform level2_6{ window, sf::Vector2f( 80, 320 ), sf::Vector2f( 80 , 20) };
 
 
 
@@ -130,24 +137,30 @@ int main( int argc, char *argv[] ){
             level=2;
         }
         if (level==1){
-        acacia.draw( window );
-        first.draw( window );
-        second.draw( window );
-        bump.draw( window );
-        Floor.draw( window );
-        left.draw( window );
-        right.draw( window );
-        One.draw(window);
-        Two.draw(window);
-        Three.draw(window);
-        Four.draw(window);
-        Five.draw(window);
-        Six.draw(window);
-		item.draw(window);
-        
-        }else{
+			acacia.draw( window );
+			wall1_1.draw( window );
+			wall1_2.draw( window );
+			bump.draw( window );
+			Floor.draw( window );
+			left.draw( window );
+			right.draw( window );
+			level1_1.draw(window);
+			level1_2.draw(window);
+			level1_3.draw(window);
+			level1_4.draw(window);
+			level1_5.draw(window);
+			level1_6.draw(window);
+			item.draw(window);
+        }
+		else{
            acacia.draw( window );
             Floor.draw( window ); 
+			level2_1.draw(window);
+			level2_2.draw(window);
+			level2_3.draw(window);
+			level2_4.draw(window);
+			level2_5.draw(window);
+			level2_6.draw(window);
         }
         
 		for( auto & action : actions ){
@@ -155,24 +168,30 @@ int main( int argc, char *argv[] ){
 		}
         
         if (level==1){
-        acacia.update( );
-        first.update(acacia);
-        second.update(acacia);
-		One.update(acacia);
-        Two.update(acacia);
-        Three.update(acacia);
-        Four.update(acacia);
-        Five.update(acacia);
-        Six.update(acacia);
-        left.update( acacia );
-        right.update(acacia);
-        bump.update( acacia );
-        Floor.update( acacia );
-		item.update(acacia);
-        
-        }else{
+			acacia.update( );
+			wall1_1.update(acacia);
+			wall1_2.update(acacia);
+			level1_1.update(acacia);
+			level1_2.update(acacia);
+			level1_3.update(acacia);
+			level1_4.update(acacia);
+			level1_5.update(acacia);
+			level1_6.update(acacia);
+			left.update( acacia );
+			right.update(acacia);
+			bump.update( acacia );
+			Floor.update( acacia );
+			item.update(acacia);
+        }
+		else{
             acacia.update();
             Floor.update(acacia);
+			level2_1.update(acacia);
+			level2_2.update(acacia);
+			level2_3.update(acacia);
+			level2_4.update(acacia);
+			level2_5.update(acacia);
+			level2_6.update(acacia);
         }
         
 		window.display();

@@ -42,14 +42,20 @@ int main( int argc, char *argv[] ){
 	std::cout << "Starting application 01-05 array of actions\n";
 
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
-    player acacia { window, sf::Vector2f{ 400.0 , 40.0 }, sf::Vector2f( 30 , 68) };
+    player acacia { window, sf::Vector2f{ 0 , 780 }, sf::Vector2f( 30 , 68) };
     floor Floor { window, sf::Vector2f( 0, 850 ), sf::Vector2f( 2000 , 20) };
-    floor bump { window, sf::Vector2f( 540, 830 ), sf::Vector2f( 640 , 20) };
-	platform One{ window, sf::Vector2f( 5, 700 ), sf::Vector2f( 80 , 20) };
+    floor bump { window, sf::Vector2f( 540, 800 ), sf::Vector2f( 640 , 20) };
+	platform One{ window, sf::Vector2f( 250, 700 ), sf::Vector2f( 80 , 20) };
 	platform Two{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
-    wall left { window, sf::Vector2f( 1000, 0 ), sf::Vector2f( 50 , 900) };
-    wall right { window, sf::Vector2f( 0, 0 ), sf::Vector2f( 50 , 900) };
-	object item {window, sf::Vector2f(100, 320), sf::Vector2f(20,20)};
+    platform Three{ window, sf::Vector2f( 250, 400 ), sf::Vector2f( 80 , 20) };
+    platform Four{ window, sf::Vector2f( 500, 450 ), sf::Vector2f( 80 , 20) };
+    platform Five{ window, sf::Vector2f( 750, 500 ), sf::Vector2f( 80 , 20) };
+    platform Six{ window, sf::Vector2f( 80, 320 ), sf::Vector2f( 80 , 20) };
+    wall first { window, sf::Vector2f( 250, 700 ), sf::Vector2f( 50 , 900) };
+    wall second { window, sf::Vector2f( 750, 500 ), sf::Vector2f( 50 , 900) };
+    wall left { window, sf::Vector2f( 2000, 0 ), sf::Vector2f( 50 , 900) };
+    wall right { window, sf::Vector2f( -50, 0 ), sf::Vector2f( 50 , 900) };
+	object item {window, sf::Vector2f(100, 300), sf::Vector2f(20,20)};
 
 
     //2 lines below create the view window
@@ -110,11 +116,18 @@ int main( int argc, char *argv[] ){
 		window.setView(view);
   
         acacia.draw( window );
+        first.draw( window );
+        second.draw( window );
+        bump.draw( window );
         Floor.draw( window );
         left.draw( window );
         right.draw( window );
         One.draw(window);
         Two.draw(window);
+        Three.draw(window);
+        Four.draw(window);
+        Five.draw(window);
+        Six.draw(window);
 		item.draw(window);
         
 		for( auto & action : actions ){
@@ -122,11 +135,17 @@ int main( int argc, char *argv[] ){
 		}
 
         acacia.update( );
-        
+        first.update(acacia);
+        second.update(acacia);
 		One.update(acacia);
         Two.update(acacia);
+        Three.update(acacia);
+        Four.update(acacia);
+        Five.update(acacia);
+        Six.update(acacia);
         left.update( acacia );
         right.update(acacia);
+        bump.update( acacia );
         Floor.update( acacia );
 		item.update(acacia);
         

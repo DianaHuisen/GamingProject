@@ -7,7 +7,7 @@ object::object( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f s
 void object::draw( sf::RenderWindow & window ){
     rectangle.setSize(sf::Vector2f(size));
     rectangle.setPosition(position);
-    rectangle.setFillColor(sf::Color( 0, 200, 0));
+    rectangle.setFillColor(sf::Color( 0, 200, 200));
     window.draw(rectangle);
 }
 

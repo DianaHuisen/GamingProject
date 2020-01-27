@@ -125,6 +125,7 @@ void player::move( sf::Vector2f delta ){
     }else if(delta.x<0){
         left=true;
     }
+//    std::cout<<delta.x<<"\n";
 //    velocity += delta;
 }
 

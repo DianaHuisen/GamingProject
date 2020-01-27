@@ -76,38 +76,47 @@ int main( int argc, char *argv[] ){
 
 	///Startingscreen setup
 	sf::Font font;
-	sf::Text text;
+	sf::Text story1;
+	sf::Text story2;
 	sf::Text contin;
-	text.setFont(font);
+	sf::Text movement;
+	story1.setFont(font);
+	story2.setFont(font);
 	contin.setFont(font);
+	movement.setFont(font);
 	if (!font.loadFromFile("aller.ttf")){
 		// error...
 	}
 	else{
 		//Storytext
-		text.setString("You've fallen from the tree!\nFind your way back home by jumping\nthrough the branches and learning\nnew skills.");
-		text.setPosition(sf::Vector2f( 450.0, 100.0 ));
-		text.setCharacterSize(30);
-		text.setFillColor(sf::Color::White);
-		
+		story1.setString("You've fallen from the tree!");
+		story1.setPosition(sf::Vector2f( 450.0, 100.0 ));
+		story1.setCharacterSize(30);
+		story1.setFillColor(sf::Color::White);
+		story2.setString("Find your way back home by jumping through the branches and learning new skills.");
+		story2.setPosition(sf::Vector2f( 50.0, 140.0 ));
+		story2.setCharacterSize(30);
+		story2.setFillColor(sf::Color::White);
+
+		//Movement
+		movement.setString("Use the arrowkeys to move around\nUse the \"E\" to interact with objects");
+		movement.setPosition(sf::Vector2f( 450.0, 550.0 ));
+		movement.setCharacterSize(20);
+		movement.setStyle(sf::Text::Italic);
+		movement.setFillColor(sf::Color::White);
+
 		//Spacebar text
 		contin.setString("Press spacebar to continue");
-		contin.setPosition(sf::Vector2f( 450.0, 600.0 ));
+		contin.setPosition(sf::Vector2f( 430.0, 700.0 ));
 		contin.setCharacterSize(30);
 		contin.setFillColor(sf::Color::White);
 
 		window.draw(contin); 
-		window.draw(text);
+		window.draw(story1);
+		window.draw(story2);
+		window.draw(movement);
 	}
-	while(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) == false){
-		window.display();
-		sf::Event event; 
-		while( window.pollEvent(event) ){
-			if( event.type == sf::Event::Closed ){
-				window.close();
-			}
-		} 
-	}
+
 
     
 	while (window.isOpen()) {

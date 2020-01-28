@@ -157,12 +157,12 @@ int main( int argc, char *argv[] ){
         //these 2 lines connect the view window to the player position
 		view.setCenter( acacia.position.x, acacia.position.y);
 		window.setView(view);
-  
+
+		window.draw(bg);
         if (item.pickedUp){
             level=2;
         }
         if (level==1){
-            window.draw(bg);
 			acacia.draw( window );
 			wall1_1.draw( window );
 			wall1_2.draw( window );
@@ -179,7 +179,6 @@ int main( int argc, char *argv[] ){
 			item.draw(window);
         }
 		else{
-            window.draw(bg);
             acacia.draw( window );
 			if(item2_1.pickedUp == false){
 		    	wall2_1.draw( window );

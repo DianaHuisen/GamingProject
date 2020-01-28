@@ -44,7 +44,7 @@ int main( int argc, char *argv[] ){
 
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
     player acacia { window, sf::Vector2f{ 0 , 780 }, sf::Vector2f( 30 , 68) };
-    floor Floor { window, sf::Vector2f( 0, 850 ), sf::Vector2f( 3000 , 20) };
+    floor Floor { window, sf::Vector2f( 0, 850 ), sf::Vector2f( 2400 , 20) };
     floor bump { window, sf::Vector2f( 540, 800 ), sf::Vector2f( 640 , 20) };
 	platform level1_1{ window, sf::Vector2f( 250, 700 ), sf::Vector2f( 80 , 20) };
 	platform level1_2{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
@@ -54,8 +54,8 @@ int main( int argc, char *argv[] ){
     platform level1_6{ window, sf::Vector2f( 80, 320 ), sf::Vector2f( 80 , 20) };
     wall wall1_1 { window, sf::Vector2f( 250, 700 ), sf::Vector2f( 50 , 900) };
     wall wall1_2 { window, sf::Vector2f( 750, 500 ), sf::Vector2f( 50 , 900) };
-    wall left { window, sf::Vector2f( 2000, 0 ), sf::Vector2f( 50 , 900) };
-    wall right { window, sf::Vector2f( -50, 0 ), sf::Vector2f( 50 , 900) };
+    wall right { window, sf::Vector2f( 2350, -200 ), sf::Vector2f( 50 , 1050) };
+    wall left { window, sf::Vector2f( -50, -400 ), sf::Vector2f( 50 , 1270) };
 	object item {window, sf::Vector2f(100, 300), sf::Vector2f(20,20)};
 
 	platform level2_1{ window, sf::Vector2f( 0, 700 ), sf::Vector2f( 80 , 20) };
@@ -97,11 +97,11 @@ int main( int argc, char *argv[] ){
 	platform level3_20{ window, sf::Vector2f( 1850, 400 ), sf::Vector2f( 80 , 20) };
 	platform level3_21{ window, sf::Vector2f( 1700, 550 ), sf::Vector2f( 80 , 20) };
 	platform level3_22{ window, sf::Vector2f( 1850, 700 ), sf::Vector2f( 80 , 20) };
-	platform level3_23{ window, sf::Vector2f( 1850, 100 ), sf::Vector2f( 80 , 20) };
-	platform level3_24{ window, sf::Vector2f( 2000, 250 ), sf::Vector2f( 80 , 20) };
+	platform level3_23{ window, sf::Vector2f( 2000, 250 ), sf::Vector2f( 80 , 20) };
+	platform level3_24{ window, sf::Vector2f( 2150, 100 ), sf::Vector2f( 80 , 20) };
 	object item3_1 {window, sf::Vector2f(230, 680), sf::Vector2f(20,20)};
 	object item3_2 {window, sf::Vector2f(230, 80), sf::Vector2f(20,20)};
-	object item3_3 {window, sf::Vector2f(2180, 230), sf::Vector2f(20,20)};
+	object item3_3 {window, sf::Vector2f(2180, 80), sf::Vector2f(20,20)};
 	object item3_4 {window, sf::Vector2f(2000, 830), sf::Vector2f(20,20)};
 	wall wall3_1 { window, sf::Vector2f(1030, -100 ), sf::Vector2f( 20 , 950) };
 	wall wall3_2 { window, sf::Vector2f(1700, 570 ), sf::Vector2f( 20 , 280) };
@@ -233,7 +233,9 @@ int main( int argc, char *argv[] ){
 		    	wall2_1.draw( window );
 				wall2_2.draw( window );
 			}
-            Floor.draw( window ); 
+            Floor.draw( window );
+			left.draw( window );
+			right.draw( window ); 
 			level2_1.draw(window);
 			level2_2.draw(window);
 			level2_3.draw(window);
@@ -252,6 +254,8 @@ int main( int argc, char *argv[] ){
         else if(level == 3){
 			acacia.draw( window );
 			Floor.draw( window );
+			left.draw( window );
+			right.draw( window );
 			level3_1.draw(window);
 			level3_2.draw(window);
 			level3_3.draw(window);
@@ -286,6 +290,7 @@ int main( int argc, char *argv[] ){
 				wall3_1.draw(window);
 			}
 			wall3_2.draw(window);
+			right.draw( window );
 		}
 
 		for( auto & action : actions ){
@@ -315,6 +320,8 @@ int main( int argc, char *argv[] ){
 				wall2_2.update(acacia);
 			}
             Floor.update(acacia);
+			left.update( acacia );
+			right.update(acacia);
 			level2_1.update(acacia);
 			level2_2.update(acacia);
 			level2_3.update(acacia);
@@ -333,6 +340,8 @@ int main( int argc, char *argv[] ){
 		else if(level == 3){
 			acacia.update();
 			Floor.update(acacia);
+			left.update( acacia );
+			right.update(acacia);
 			level3_1.update(acacia);
 			level3_2.update(acacia);
 			level3_3.update(acacia);

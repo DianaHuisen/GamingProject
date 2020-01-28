@@ -74,7 +74,12 @@ int main( int argc, char *argv[] ){
 	object item2_1 {window, sf::Vector2f(170, 130), sf::Vector2f(20,20)};
 	object item2_2 {window, sf::Vector2f(900, 830), sf::Vector2f(20,20)};
 
-
+    //  BACKGROUND TEXTURE
+    sf::Texture texture;
+    texture.loadFromFile("bg-3000x1500.jpg");
+    sf::Sprite bg;
+    bg.move(sf::Vector2f(-400,-400));
+    bg.setTexture(texture);
 
     //2 lines below create the view window
 	sf::View view;
@@ -156,6 +161,7 @@ int main( int argc, char *argv[] ){
             level=2;
         }
         if (level==1){
+            window.draw(bg);
 			acacia.draw( window );
 			wall1_1.draw( window );
 			wall1_2.draw( window );
@@ -172,6 +178,7 @@ int main( int argc, char *argv[] ){
 			item.draw(window);
         }
 		else{
+            window.draw(bg);
             acacia.draw( window );
 			if(item2_1.pickedUp == false){
 		    	wall2_1.draw( window );

@@ -9,6 +9,7 @@ void rectangle::draw( sf::RenderWindow & window ){
     rect.setSize(sf::Vector2f(size));
     rect.setPosition(position);
     window.draw(rect);
+
 }
 void rectangle::update( ){
     hitbox = rect.getGlobalBounds();

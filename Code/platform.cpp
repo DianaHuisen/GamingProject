@@ -8,6 +8,14 @@ void platform::draw( sf::RenderWindow & window ){
     rect.setSize(sf::Vector2f(size));
     rect.setPosition(position);
     window.draw(rect);
+    
+    sf::Texture texture;
+    texture.loadFromFile("wood-platform.png");
+    sf::Sprite sprite;
+    sprite.setTexture(texture);
+    sprite.setTextureRect(sf::IntRect(0,0,size.x,size.y));
+    sprite.move(sf::Vector2f(position.x,position.y));
+    window.draw(sprite);
 }
 
 void platform::update( player & acacia ){

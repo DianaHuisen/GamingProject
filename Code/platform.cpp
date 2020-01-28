@@ -25,9 +25,9 @@ void platform::update( player & acacia ){
     hitboxBigger.top = hitboxBigger.top - 2;
     
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
-        if(acacia.velocity.y < acacia.maxY){
-            acacia.velocity += acacia.gravity;
-        }
+//        if(acacia.velocity.y < acacia.maxY){
+//            acacia.velocity += acacia.gravity;
+//        }
         if (acacia.jumping){
             acacia.jumping = false;
         }

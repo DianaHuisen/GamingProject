@@ -39,7 +39,7 @@ public:
 };
 
 int main( int argc, char *argv[] ){
-    int level=1;
+    int level=2;
 	std::cout << "Starting application 01-05 array of actions\n";
 
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
@@ -58,12 +58,21 @@ int main( int argc, char *argv[] ){
     wall right { window, sf::Vector2f( -50, 0 ), sf::Vector2f( 50 , 900) };
 	object item {window, sf::Vector2f(100, 300), sf::Vector2f(20,20)};
 
-	platform level2_1{ window, sf::Vector2f( 250, 700 ), sf::Vector2f( 80 , 20) };
-	platform level2_2{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
-    platform level2_3{ window, sf::Vector2f( 250, 400 ), sf::Vector2f( 80 , 20) };
-    platform level2_4{ window, sf::Vector2f( 500, 450 ), sf::Vector2f( 80 , 20) };
-    platform level2_5{ window, sf::Vector2f( 750, 500 ), sf::Vector2f( 80 , 20) };
-    platform level2_6{ window, sf::Vector2f( 80, 320 ), sf::Vector2f( 80 , 20) };
+	platform level2_1{ window, sf::Vector2f( 0, 700 ), sf::Vector2f( 80 , 20) };
+	platform level2_2{ window, sf::Vector2f( 150, 550 ), sf::Vector2f( 80 , 20) };
+    platform level2_3{ window, sf::Vector2f( 300, 450 ), sf::Vector2f( 80 , 20) };
+    platform level2_4{ window, sf::Vector2f( 450, 550 ), sf::Vector2f( 80 , 20) };
+    platform level2_5{ window, sf::Vector2f( 700, 500 ), sf::Vector2f( 80 , 20) };
+    platform level2_6{ window, sf::Vector2f( 850, 350 ), sf::Vector2f( 80 , 20) };
+	platform level2_7{ window, sf::Vector2f( 700, 200 ), sf::Vector2f( 80 , 20) };
+	platform level2_8{ window, sf::Vector2f( 550, 150 ), sf::Vector2f( 80 , 20) };
+	platform level2_9{ window, sf::Vector2f( 300, 170 ), sf::Vector2f( 80 , 20) };
+	platform level2_10{ window, sf::Vector2f( 150, 150 ), sf::Vector2f( 80 , 20) };
+	platform level2_11{ window, sf::Vector2f( 850, 570 ), sf::Vector2f( 180 , 20) };
+	wall wall2_1 { window, sf::Vector2f(850, 570 ), sf::Vector2f( 20 , 280) };
+	wall wall2_2 { window, sf::Vector2f(1010, 570 ), sf::Vector2f( 20 , 280) };
+	object item2_1 {window, sf::Vector2f(170, 130), sf::Vector2f(20,20)};
+	object item2_2 {window, sf::Vector2f(900, 830), sf::Vector2f(20,20)};
 
 
 
@@ -75,7 +84,8 @@ int main( int argc, char *argv[] ){
         action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -5.0,  0.0 )); }),
 		action( sf::Keyboard::Right, [&](){ acacia.move( sf::Vector2f( +5.0,  0.0 )); }),
         action( sf::Keyboard::Up,    [&](){ acacia.jump( ); }),
-		action( sf::Keyboard::E,	 [&](){ item.interact(acacia);})
+		action( sf::Keyboard::E,	 [&](){ 
+			if (level == 1){item.interact(acacia);} else{item2_1.interact(acacia);}})
 
 	};
 	
@@ -153,7 +163,11 @@ int main( int argc, char *argv[] ){
 			item.draw(window);
         }
 		else{
-           acacia.draw( window );
+            acacia.draw( window );
+			if(item2_1.pickedUp == false){
+		    	wall2_1.draw( window );
+				wall2_2.draw( window );
+			}
             Floor.draw( window ); 
 			level2_1.draw(window);
 			level2_2.draw(window);
@@ -161,6 +175,13 @@ int main( int argc, char *argv[] ){
 			level2_4.draw(window);
 			level2_5.draw(window);
 			level2_6.draw(window);
+			level2_7.draw(window);
+			level2_8.draw(window);
+			level2_9.draw(window);
+			level2_10.draw(window);
+			level2_11.draw(window);
+			item2_1.draw(window);
+			item2_2.draw(window);
         }
         
 		for( auto & action : actions ){
@@ -185,6 +206,10 @@ int main( int argc, char *argv[] ){
         }
 		else{
             acacia.update();
+			if(item2_1.pickedUp == false){
+				wall2_1.update(acacia);
+				wall2_2.update(acacia);
+			}
             Floor.update(acacia);
 			level2_1.update(acacia);
 			level2_2.update(acacia);
@@ -192,6 +217,13 @@ int main( int argc, char *argv[] ){
 			level2_4.update(acacia);
 			level2_5.update(acacia);
 			level2_6.update(acacia);
+			level2_7.update(acacia);
+			level2_8.update(acacia);
+			level2_9.update(acacia);
+			level2_10.update(acacia);
+			level2_11.update(acacia);
+			item2_1.update(acacia);
+			item2_2.update(acacia);
         }
         
 		window.display();

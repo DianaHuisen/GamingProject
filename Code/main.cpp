@@ -39,12 +39,12 @@ public:
 };
 
 int main( int argc, char *argv[] ){
-    int level=1;
+    int level=3;
 	std::cout << "Starting application 01-05 array of actions\n";
 
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
     player acacia { window, sf::Vector2f{ 0 , 780 }, sf::Vector2f( 30 , 68) };
-    floor Floor { window, sf::Vector2f( 0, 850 ), sf::Vector2f( 2000 , 20) };
+    floor Floor { window, sf::Vector2f( 0, 850 ), sf::Vector2f( 3000 , 20) };
     floor bump { window, sf::Vector2f( 540, 800 ), sf::Vector2f( 640 , 20) };
 	platform level1_1{ window, sf::Vector2f( 250, 700 ), sf::Vector2f( 80 , 20) };
 	platform level1_2{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
@@ -75,6 +75,37 @@ int main( int argc, char *argv[] ){
 	object item2_1 {window, sf::Vector2f(170, 130), sf::Vector2f(20,20)};
 	object item2_2 {window, sf::Vector2f(900, 830), sf::Vector2f(20,20)};
 
+	platform level3_1{ window, sf::Vector2f( 200, 700 ), sf::Vector2f( 80 , 20) };
+	platform level3_2{ window, sf::Vector2f( 500, 700 ), sf::Vector2f( 80 , 20) };
+    platform level3_3{ window, sf::Vector2f( 800, 700 ), sf::Vector2f( 80 , 20) };
+    platform level3_4{ window, sf::Vector2f( 50, 550 ), sf::Vector2f( 80 , 20) };
+    platform level3_5{ window, sf::Vector2f( 350, 550 ), sf::Vector2f( 80 , 20) };
+    platform level3_6{ window, sf::Vector2f( 650, 550 ), sf::Vector2f( 80 , 20) };
+	platform level3_7{ window, sf::Vector2f( 950, 550 ), sf::Vector2f( 80 , 20) };
+	platform level3_8{ window, sf::Vector2f( 200, 400 ), sf::Vector2f( 80 , 20) };
+	platform level3_9{ window, sf::Vector2f( 800, 400 ), sf::Vector2f( 80 , 20) };
+	platform level3_10{ window, sf::Vector2f( 50, 250 ), sf::Vector2f( 80 , 20) };
+	platform level3_11{ window, sf::Vector2f( 500, 250 ), sf::Vector2f( 80 , 20) };
+	platform level3_12{ window, sf::Vector2f( 950, 250 ), sf::Vector2f( 80 , 20) };
+	platform level3_13{ window, sf::Vector2f( 200, 100 ), sf::Vector2f( 80 , 20) };
+	platform level3_14{ window, sf::Vector2f( 800, 100 ), sf::Vector2f( 80 , 20) };
+	platform level3_15{ window, sf::Vector2f( 1100, 400 ), sf::Vector2f( 80 , 20) };
+	platform level3_16{ window, sf::Vector2f( 1250, 250 ), sf::Vector2f( 80 , 20) };
+	platform level3_17{ window, sf::Vector2f( 1400, 100 ), sf::Vector2f( 80 , 20) };
+	platform level3_18{ window, sf::Vector2f( 1550, 200 ), sf::Vector2f( 80 , 20) };
+	platform level3_19{ window, sf::Vector2f( 1700, 250 ), sf::Vector2f( 80 , 20) };
+	platform level3_20{ window, sf::Vector2f( 1850, 400 ), sf::Vector2f( 80 , 20) };
+	platform level3_21{ window, sf::Vector2f( 1700, 550 ), sf::Vector2f( 80 , 20) };
+	platform level3_22{ window, sf::Vector2f( 1850, 700 ), sf::Vector2f( 80 , 20) };
+	platform level3_23{ window, sf::Vector2f( 1850, 100 ), sf::Vector2f( 80 , 20) };
+	platform level3_24{ window, sf::Vector2f( 2000, 250 ), sf::Vector2f( 80 , 20) };
+	object item3_1 {window, sf::Vector2f(230, 680), sf::Vector2f(20,20)};
+	object item3_2 {window, sf::Vector2f(230, 80), sf::Vector2f(20,20)};
+	object item3_3 {window, sf::Vector2f(2180, 230), sf::Vector2f(20,20)};
+	object item3_4 {window, sf::Vector2f(2000, 830), sf::Vector2f(20,20)};
+	wall wall3_1 { window, sf::Vector2f(1030, -100 ), sf::Vector2f( 20 , 950) };
+	wall wall3_2 { window, sf::Vector2f(1700, 570 ), sf::Vector2f( 20 , 280) };
+
     //  BACKGROUND TEXTURE
     sf::Texture texture;
     texture.loadFromFile("bg-3000x1500.jpg");
@@ -90,9 +121,22 @@ int main( int argc, char *argv[] ){
         action( sf::Keyboard::Left,  [&](){ acacia.move( sf::Vector2f( -5.0,  0.0 )); }),
 		action( sf::Keyboard::Right, [&](){ acacia.move( sf::Vector2f( +5.0,  0.0 )); }),
         action( sf::Keyboard::Up,    [&](){ acacia.jump( ); }),
-		action( sf::Keyboard::E,	 [&](){ 
-			if (level == 1){item.interact(acacia);} else{item2_1.interact(acacia);}})
-
+		action( sf::Keyboard::E,	 [&](){
+			if (level == 1){
+				item.interact(acacia);
+			} 
+			else if(level==2){
+				item2_1.interact(acacia);
+				item2_2.interact(acacia);
+			}
+			else if(level==3){
+				item3_1.interact(acacia);
+				item3_2.interact(acacia);
+				item3_3.interact(acacia);
+				item3_4.interact(acacia);
+			}
+		}
+		)
 	};
 	
 	window.clear();
@@ -161,7 +205,12 @@ int main( int argc, char *argv[] ){
 		window.draw(bg);
         if (item.pickedUp){
             level=2;
-        }
+			if (item2_2.pickedUp){
+				level=3;
+			}
+		}
+
+		///Draws per level
         if (level==1){
 			acacia.draw( window );
 			wall1_1.draw( window );
@@ -178,7 +227,7 @@ int main( int argc, char *argv[] ){
 			level1_6.draw(window);
 			item.draw(window);
         }
-		else{
+		else if(level == 2){
             acacia.draw( window );
 			if(item2_1.pickedUp == false){
 		    	wall2_1.draw( window );
@@ -200,11 +249,49 @@ int main( int argc, char *argv[] ){
 			item2_1.draw(window);
 			item2_2.draw(window);
         }
-        
+        else if(level == 3){
+			acacia.draw( window );
+			Floor.draw( window );
+			level3_1.draw(window);
+			level3_2.draw(window);
+			level3_3.draw(window);
+			level3_4.draw(window);
+			level3_5.draw(window);
+			level3_6.draw(window);
+			level3_7.draw(window);
+			level3_8.draw(window);
+			level3_9.draw(window);
+			level3_10.draw(window);
+			level3_11.draw(window);
+			level3_12.draw(window);
+			level3_13.draw(window);
+			level3_14.draw(window);
+			level3_15.draw(window);
+			level3_16.draw(window);
+			level3_17.draw(window);
+			level3_18.draw(window);
+			level3_19.draw(window);
+			level3_20.draw(window);
+			level3_21.draw(window);
+			level3_22.draw(window);
+			level3_23.draw(window);
+			level3_24.draw(window);
+			item3_1.draw(window);
+			item3_2.draw(window);
+			item3_3.draw(window);
+			if(item3_3.pickedUp == true){
+				item3_4.draw(window);
+			}
+			if(!(item3_1.pickedUp == true && item3_2.pickedUp == true)){
+				wall3_1.draw(window);
+			}
+			wall3_2.draw(window);
+		}
+
 		for( auto & action : actions ){
 			action();
 		}
-        
+        ///Updates per level
         if (level==1){
 			acacia.update( );
 			wall1_1.update(acacia);
@@ -221,7 +308,7 @@ int main( int argc, char *argv[] ){
 			Floor.update( acacia );
 			item.update(acacia);
         }
-		else{
+		else if(level == 2){
             acacia.update();
 			if(item2_1.pickedUp == false){
 				wall2_1.update(acacia);
@@ -243,6 +330,44 @@ int main( int argc, char *argv[] ){
 			item2_1.update(acacia);
 			item2_2.update(acacia);
         }
+		else if(level == 3){
+			acacia.update();
+			Floor.update(acacia);
+			level3_1.update(acacia);
+			level3_2.update(acacia);
+			level3_3.update(acacia);
+			level3_4.update(acacia);
+			level3_5.update(acacia);
+			level3_6.update(acacia);
+			level3_7.update(acacia);
+			level3_8.update(acacia);
+			level3_9.update(acacia);
+			level3_10.update(acacia);
+			level3_11.update(acacia);
+			level3_12.update(acacia);
+			level3_13.update(acacia);
+			level3_14.update(acacia);
+			level3_15.update(acacia);
+			level3_16.update(acacia);
+			level3_17.update(acacia);
+			level3_18.update(acacia);
+			level3_19.update(acacia);
+			level3_20.update(acacia);
+			level3_21.update(acacia);
+			level3_22.update(acacia);
+			level3_23.update(acacia);
+			level3_24.update(acacia);
+			item3_1.update(acacia);
+			item3_2.update(acacia);
+			item3_3.update(acacia);
+			if(item3_3.pickedUp == true){
+				item3_4.update(acacia);
+			}
+			if(!(item3_1.pickedUp == true && item3_2.pickedUp == true)){
+				wall3_1.update(acacia);
+			}
+			wall3_2.update(acacia);
+		}
         
 		window.display();
 

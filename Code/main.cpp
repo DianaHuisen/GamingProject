@@ -39,7 +39,7 @@ public:
 };
 
 int main( int argc, char *argv[] ){
-    int level=2;
+    int level=1;
 	std::cout << "Starting application 01-05 array of actions\n";
 
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
@@ -134,6 +134,15 @@ int main( int argc, char *argv[] ){
 		window.draw(movement);
 	}
 
+	while(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) == false){
+		window.display();	
+		sf::Event event; 	
+		while( window.pollEvent(event) ){	
+			if( event.type == sf::Event::Closed ){	
+				window.close();	
+			}	
+		} 	
+	}
 
     
 	while (window.isOpen()) {

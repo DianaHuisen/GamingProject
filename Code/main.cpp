@@ -68,9 +68,10 @@ int main( int argc, char *argv[] ){
 	platform level2_8{ window, sf::Vector2f( 550, 150 ), sf::Vector2f( 80 , 20) };
 	platform level2_9{ window, sf::Vector2f( 300, 170 ), sf::Vector2f( 80 , 20) };
 	platform level2_10{ window, sf::Vector2f( 150, 150 ), sf::Vector2f( 80 , 20) };
-	platform level2_11{ window, sf::Vector2f( 850, 570 ), sf::Vector2f( 180 , 20) };
+	platform level2_11{ window, sf::Vector2f( 850, 570 ), sf::Vector2f( 80 , 20) };
+	platform level2_12{ window, sf::Vector2f( 930, 570 ), sf::Vector2f( 80 , 20) };
 	wall wall2_1 { window, sf::Vector2f(850, 570 ), sf::Vector2f( 20 , 280) };
-	wall wall2_2 { window, sf::Vector2f(1010, 570 ), sf::Vector2f( 20 , 280) };
+	wall wall2_2 { window, sf::Vector2f(990, 570 ), sf::Vector2f( 20 , 280) };
 	object item2_1 {window, sf::Vector2f(170, 130), sf::Vector2f(20,20)};
 	object item2_2 {window, sf::Vector2f(900, 830), sf::Vector2f(20,20)};
 
@@ -196,6 +197,7 @@ int main( int argc, char *argv[] ){
 			level2_9.draw(window);
 			level2_10.draw(window);
 			level2_11.draw(window);
+			level2_12.draw(window);
 			item2_1.draw(window);
 			item2_2.draw(window);
         }
@@ -238,6 +240,7 @@ int main( int argc, char *argv[] ){
 			level2_9.update(acacia);
 			level2_10.update(acacia);
 			level2_11.update(acacia);
+			level2_12.update(acacia);
 			item2_1.update(acacia);
 			item2_2.update(acacia);
         }

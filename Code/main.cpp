@@ -131,7 +131,7 @@ int main( int argc, char *argv[] ){
 
 	// BACKGROUND TEXTURE
 	sf::Texture texture;
-	texture.loadFromFile("bg-3000x1500.jpg");
+	texture.loadFromFile("sprites/bg-3000x1500.jpg");
 	sf::Sprite bg;
 	bg.move(sf::Vector2f(-400,-400));
 	bg.setTexture(texture);

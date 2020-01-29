@@ -14,17 +14,17 @@ void object::draw( sf::RenderWindow & window ){
     sf::Sprite sprite;
     
     if (type==1 and !pickedUp){
-        texture.loadFromFile("berry-small.png");
-    }else if(type==2){
-        texture.loadFromFile("keySmall.png");
+        texture.loadFromFile("sprites/berry-small.png");
+    }else if(type==2 and !pickedUp){
+        texture.loadFromFile("sprites/keySmall.png");
     }else if(type==3){
         if (pickedUp){
-            texture.loadFromFile("shroomDownSmall.png");
+            texture.loadFromFile("sprites/shroomDownSmall.png");
         }else{
-            texture.loadFromFile("shroomSmall.png");
+            texture.loadFromFile("sprites/shroomSmall.png");
         }
     }else{
-        texture.create(size.x,size.y);
+        texture.loadFromFile("sprites/empty.png");
     }
     rectangle.setFillColor(sf::Color( 0, 0, 0, 0));
     sprite.setTexture(texture);

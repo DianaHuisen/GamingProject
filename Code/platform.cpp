@@ -10,7 +10,7 @@ void platform::draw( sf::RenderWindow & window ){
     window.draw(rect);
     
     sf::Texture texture;
-    texture.loadFromFile("wood-platform.png");
+    texture.loadFromFile("sprites/wood-platform.png");
     sf::Sprite sprite;
     sprite.setTexture(texture);
     sprite.setTextureRect(sf::IntRect(0,0,size.x,size.y));

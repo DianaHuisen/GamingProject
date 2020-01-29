@@ -16,7 +16,7 @@ void player::draw( sf::RenderWindow & window ) {
 	window.draw(acacia);
     
     sf::Texture texture;
-    texture.loadFromFile("SpriteSheetAcaciaMediumSmall.png");
+    texture.loadFromFile("sprites/SpriteSheetAcaciaMediumSmall.png");
     sf::IntRect rectSourceSprite(204, 153, 68, 153);
     sf::Sprite sprite(texture,rectSourceSprite);
     sprite.setScale(sf::Vector2f(0.45f, 0.45f));

@@ -45,13 +45,17 @@ int main( int argc, char *argv[] ){
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
     player acacia { window, sf::Vector2f{ 0 , 780 }, sf::Vector2f( 30 , 68) };
     floor Floor { window, sf::Vector2f( 0, 850 ), sf::Vector2f( 2400 , 20) };
+	wall left { window, sf::Vector2f( -50, -400 ), sf::Vector2f( 50 , 1270) };	
+	wall right { window, sf::Vector2f( 2350, -200 ), sf::Vector2f( 50 , 1050) };
+
+
 	platform level1_1{ window, sf::Vector2f( 250, 700 ), sf::Vector2f( 80 , 20) };
 	platform level1_2{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
     platform level1_3{ window, sf::Vector2f( 250, 400 ), sf::Vector2f( 80 , 20) };
     platform level1_4{ window, sf::Vector2f( 500, 450 ), sf::Vector2f( 80 , 20) };
     platform level1_5{ window, sf::Vector2f( 750, 500 ), sf::Vector2f( 80 , 20) };
+	//second part
     platform level1_6{ window, sf::Vector2f( 80, 250 ), sf::Vector2f( 80 , 20) };
-    
     platform level1_7{ window, sf::Vector2f( 950, 450 ), sf::Vector2f( 80 , 20) };
     platform level1_8{ window, sf::Vector2f( 1150, 550 ), sf::Vector2f( 80 , 20) };
     platform level1_9{ window, sf::Vector2f( 1350, 450 ), sf::Vector2f( 80 , 20) };
@@ -59,15 +63,11 @@ int main( int argc, char *argv[] ){
     platform level1_11{ window, sf::Vector2f( 1700, 550 ), sf::Vector2f( 80 , 20) };
     platform level1_12{ window, sf::Vector2f( 1850, 380 ), sf::Vector2f( 80 , 20) };
     platform level1_13{ window, sf::Vector2f( 1650, 250 ), sf::Vector2f( 80 , 20) };
-    
-    wall right { window, sf::Vector2f( 2350, -200 ), sf::Vector2f( 50 , 1050) };
-    wall left { window, sf::Vector2f( -50, -400 ), sf::Vector2f( 50 , 1270) };
-
-    wall wall1_1 { window, sf::Vector2f( 750, 520 ), sf::Vector2f( 50 , 350) };
+	wall wall1_1 { window, sf::Vector2f( 750, 520 ), sf::Vector2f( 50 , 330) };
+	wall wall1_2 { window, sf::Vector2f( 810, 200 ), sf::Vector2f( 20 , 300) };
 	object item1_1 {window, sf::Vector2f(100, 230), sf::Vector2f(20,20)};
     object item1_2 {window, sf::Vector2f( 850, 830), sf::Vector2f(20,20)};
     object item1_3 {window, sf::Vector2f(1650, 230), sf::Vector2f(20,20)};
-    
 
 
 	platform level2_1{ window, sf::Vector2f( 0, 700 ), sf::Vector2f( 80 , 20) };
@@ -82,6 +82,9 @@ int main( int argc, char *argv[] ){
 	platform level2_10{ window, sf::Vector2f( 150, 150 ), sf::Vector2f( 80 , 20) };
 	platform level2_11{ window, sf::Vector2f( 850, 570 ), sf::Vector2f( 80 , 20) };
 	platform level2_12{ window, sf::Vector2f( 930, 570 ), sf::Vector2f( 80 , 20) };
+	platform level2_13{ window, sf::Vector2f( 1080, 720 ), sf::Vector2f( 80 , 20) };
+	// platform level2_14{ window, sf::Vector2f( 1230, 870 ), sf::Vector2f( 80 , 20) };
+	// platform level2_15{ window, sf::Vector2f( 930, 570 ), sf::Vector2f( 80 , 20) };
 	wall wall2_1 { window, sf::Vector2f(850, 570 ), sf::Vector2f( 20 , 280) };
 	wall wall2_2 { window, sf::Vector2f(990, 570 ), sf::Vector2f( 20 , 280) };
 	object item2_1 {window, sf::Vector2f(170, 130), sf::Vector2f(20,20)};
@@ -221,10 +224,12 @@ int main( int argc, char *argv[] ){
 		///Draws per level
         if (level==1){
 			acacia.draw( window );
-			wall1_1.draw( window );
-			Floor.draw( window );
 			left.draw( window );
 			right.draw( window );
+			Floor.draw( window );
+
+			wall1_1.draw( window );
+			wall1_2.draw(window);
 			level1_1.draw(window);
 			level1_2.draw(window);
 			level1_3.draw(window);
@@ -270,6 +275,7 @@ int main( int argc, char *argv[] ){
 			level2_10.draw(window);
 			level2_11.draw(window);
 			level2_12.draw(window);
+			level2_13.draw(window);
 			item2_1.draw(window);
 			item2_2.draw(window);
             if (item2_2.pickedUp){
@@ -324,7 +330,12 @@ int main( int argc, char *argv[] ){
         ///Updates per level
         if (level==1){
 			acacia.update( );
+			left.update( acacia );
+			right.update(acacia);
+			Floor.update( acacia );
+
 			wall1_1.update(acacia);
+			wall1_2.update(acacia);
 			level1_1.update(acacia);
 			level1_2.update(acacia);
 			level1_3.update(acacia);
@@ -339,10 +350,6 @@ int main( int argc, char *argv[] ){
 			level1_11.update(acacia);
 			level1_12.update(acacia);
             level1_13.update(acacia);
-            
-			left.update( acacia );
-			right.update(acacia);
-			Floor.update( acacia );
 			item1_1.update(acacia);
             item1_2.update(acacia);
             item1_3.update(acacia);
@@ -369,6 +376,7 @@ int main( int argc, char *argv[] ){
 			level2_10.update(acacia);
 			level2_11.update(acacia);
 			level2_12.update(acacia);
+			level2_13.update(acacia);
 			item2_1.update(acacia);
 			item2_2.update(acacia);
         }

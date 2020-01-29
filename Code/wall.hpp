@@ -9,7 +9,7 @@
 class wall: public rectangle {
 public:
     
-    wall( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );
+    wall( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size), bool sidewall=false);
     
     void draw( sf::RenderWindow & window ) override;
     void update( player & acacia );
@@ -17,6 +17,7 @@ public:
 private:
 	sf::Vector2f position;
 	sf::Vector2f size;
+    bool sidewall;
 };
 
 #endif

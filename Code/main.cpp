@@ -47,8 +47,8 @@ int main( int argc, char *argv[] ){
 
 	player acacia { window, sf::Vector2f{ 0 , 780 }, sf::Vector2f( 30 , 68) };
 	floor Floor { window, sf::Vector2f( 0, 850 ), sf::Vector2f( 2400 , 20) };
-	wall left { window, sf::Vector2f( -50, -400 ), sf::Vector2f( 50 , 1270) }; 
-	wall right { window, sf::Vector2f( 2350, -200 ), sf::Vector2f( 50 , 1050) };
+	wall left { window, sf::Vector2f( -50, -400 ), sf::Vector2f( 50 , 1600),1 }; 
+	wall right { window, sf::Vector2f( 2350, 500 ), sf::Vector2f( 50 , 350) };
 
 	platform level1_1{ window, sf::Vector2f( 250, 700 ), sf::Vector2f( 80 , 20) };
 	platform level1_2{ window, sf::Vector2f( 120, 550 ), sf::Vector2f( 80 , 20) };
@@ -65,7 +65,7 @@ int main( int argc, char *argv[] ){
 	platform level1_12{ window, sf::Vector2f( 1850, 380 ), sf::Vector2f( 80 , 20) };
 	platform level1_13{ window, sf::Vector2f( 1650, 250 ), sf::Vector2f( 80 , 20) };
 	wall wall1_1 { window, sf::Vector2f( 750, 520 ), sf::Vector2f( 50 , 330) };
-	wall wall1_2 { window, sf::Vector2f( 810, 200 ), sf::Vector2f( 20 , 300) };
+	wall wall1_2 { window, sf::Vector2f( 780, 200 ), sf::Vector2f( 500 , 300) };
 	object item1_1 {window, sf::Vector2f(100, 220), sf::Vector2f(30,30), 3}; // connected to platform 1_6
 	object item1_2 {window, sf::Vector2f( 850, 830), sf::Vector2f(20,20), 1}; // connected to floor
 	object item1_3 {window, sf::Vector2f(1650, 230), sf::Vector2f(20,20), 1}; // connected to platform 1_13
@@ -90,10 +90,10 @@ int main( int argc, char *argv[] ){
 	platform level2_18{ window, sf::Vector2f( 1530, 270), sf::Vector2f( 80 , 20) };
 	platform level2_19{ window, sf::Vector2f( 1380, 120 ), sf::Vector2f( 80 , 20) };
 	platform level2_20{ window, sf::Vector2f( 1230, 120 ), sf::Vector2f( 80 , 20) };
-	wall wall2_1 { window, sf::Vector2f(850, 560 ), sf::Vector2f( 20 , 290) };
-	wall wall2_2 { window, sf::Vector2f(990, 560 ), sf::Vector2f( 20 , 290) };
-	wall wall2_3 { window, sf::Vector2f(1200, 550 ), sf::Vector2f( 20 , 300) };
-	wall wall2_3ext { window, sf::Vector2f(1200, 250 ), sf::Vector2f( 20 , 300) };
+	wall wall2_1 { window, sf::Vector2f(850, 560 ), sf::Vector2f( 50 , 290) };
+	wall wall2_2 { window, sf::Vector2f(970, 560 ), sf::Vector2f( 50 , 290) };
+	wall wall2_3 { window, sf::Vector2f(1230, 590 ), sf::Vector2f( 50 , 260) };
+	wall wall2_3ext { window, sf::Vector2f(1230, 280 ), sf::Vector2f( 50 , 300) };
 	object item2_1 {window, sf::Vector2f(170, 120), sf::Vector2f(30,30), 3}; // connected to platform 2_10
 	object item2_2 {window, sf::Vector2f(900, 820), sf::Vector2f(30,30), 2}; // connected to floor
 	object item2_3 {window, sf::Vector2f(1260, 90), sf::Vector2f(30,30), 2}; // connected to platform 2_20
@@ -122,12 +122,16 @@ int main( int argc, char *argv[] ){
 	platform level3_22{ window, sf::Vector2f( 1850, 700 ), sf::Vector2f( 80 , 20) };
 	platform level3_23{ window, sf::Vector2f( 2000, 250 ), sf::Vector2f( 80 , 20) };
 	platform level3_24{ window, sf::Vector2f( 2150, 100 ), sf::Vector2f( 80 , 20) };
+    platform level3_25{ window, sf::Vector2f( 2230, 100 ), sf::Vector2f( 80 , 20) };
 	object item3_1 {window, sf::Vector2f(230, 680), sf::Vector2f(20,20), 1}; // connected to platform 3_1
 	object item3_2 {window, sf::Vector2f(230, 80), sf::Vector2f(20,20), 1}; // connected to platform 3_13
 	object item3_3 {window, sf::Vector2f(2180, 80), sf::Vector2f(20,20), 1}; // connected to platform 3_24
 	object item3_4 {window, sf::Vector2f(2000, 820), sf::Vector2f(30,30), 2}; // connected to floor
-	wall wall3_1 { window, sf::Vector2f(1030, -100 ), sf::Vector2f( 20 , 950) };
-	wall wall3_2 { window, sf::Vector2f(1700, 570 ), sf::Vector2f( 20 , 280) };
+	wall wall3_11 { window, sf::Vector2f(980, -100 ), sf::Vector2f( 50 , 350 ) };
+    wall wall3_12 { window, sf::Vector2f(980, 270 ), sf::Vector2f( 50 , 280) };
+    wall wall3_13 { window, sf::Vector2f(980,  570), sf::Vector2f( 50 , 280) };
+	wall wall3_2 { window, sf::Vector2f(1700, 570 ), sf::Vector2f( 50 , 280) };
+    wall wall3_3 { window, sf::Vector2f(2260, -250 ), sf::Vector2f( 50 , 350) };
 
 	// BACKGROUND TEXTURE
 	sf::Texture texture;
@@ -367,14 +371,18 @@ int main( int argc, char *argv[] ){
 			level3_22.draw(window);
 			level3_23.draw(window);
 			level3_24.draw(window);
+            level3_25.draw(window);
 			item3_1.draw(window);
 			item3_2.draw(window);
 			item3_3.draw(window);
+            wall3_3.draw(window);
 			if(item3_3.pickedUp == true){
 				item3_4.draw(window);
 			}
 			if(!(item3_1.pickedUp == true && item3_2.pickedUp == true)){
-				wall3_1.draw(window);
+				wall3_11.draw(window);
+                wall3_12.draw(window);
+                wall3_13.draw(window);
 			}
 			wall3_2.draw(window);
 			if(item3_4.pickedUp == false){
@@ -490,14 +498,18 @@ int main( int argc, char *argv[] ){
 			level3_22.update(acacia);
 			level3_23.update(acacia);
 			level3_24.update(acacia);
+            level3_25.update(acacia);
 			item3_1.update(acacia);
 			item3_2.update(acacia);
 			item3_3.update(acacia);
+            wall3_3.update(acacia);
 			if(item3_3.pickedUp == true){
 				item3_4.update(acacia);
 			}
 			if(!(item3_1.pickedUp == true && item3_2.pickedUp == true)){
-				wall3_1.update(acacia);
+				wall3_11.update(acacia);
+                wall3_12.update(acacia);
+                wall3_13.update(acacia);
 			}
 			wall3_2.update(acacia);
 		}

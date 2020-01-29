@@ -166,18 +166,24 @@ int main( int argc, char *argv[] ){
 
 	window.clear();
 
-	///Startingscreen setup
+	///Text setup
 	sf::Font font;
 	sf::Text story1;
 	sf::Text story2;
 	sf::Text contin;
 	sf::Text movement;
 	sf::Text lvl1;
+	sf::Text lvl2;
+	sf::Text lvl3;
+	sf::Text ending;
 	story1.setFont(font);
 	story2.setFont(font);
 	contin.setFont(font);
 	movement.setFont(font);
 	lvl1.setFont(font);
+	lvl2.setFont(font);
+	lvl3.setFont(font);
+	ending.setFont(font);
 
 	if (!font.loadFromFile("aller.ttf")){
 		// error...
@@ -211,6 +217,21 @@ int main( int argc, char *argv[] ){
 		lvl1.setCharacterSize(15);
 		lvl1.setFillColor(sf::Color::White);
 
+		//Level 2 storytext
+		lvl2.setString("Find the key and open the door");
+		lvl2.setCharacterSize(15);
+		lvl2.setFillColor(sf::Color::White);
+		
+		//Level 3 storytext
+		lvl3.setString("Collect three berries and find the hidden key");
+		lvl3.setCharacterSize(15);
+		lvl3.setFillColor(sf::Color::White);
+		
+		//Ending storytext
+		ending.setString("Thank you for playing!\nMore levels coming soon...");
+		ending.setCharacterSize(15);
+		ending.setFillColor(sf::Color::White);
+
 		window.draw(contin); 
 		window.draw(story1);
 		window.draw(story2);
@@ -233,6 +254,9 @@ int main( int argc, char *argv[] ){
 		view.setCenter( acacia.position.x, acacia.position.y);
 		window.setView(view);
 		lvl1.setPosition(view.getCenter() + sf::Vector2f( -240.0, -190.0 ));
+		lvl2.setPosition(view.getCenter() + sf::Vector2f( -240.0, -190.0 ));
+		lvl3.setPosition(view.getCenter() + sf::Vector2f( -240.0, -190.0 ));
+		ending.setPosition(view.getCenter() + sf::Vector2f( -70.0, -50.0 ));
 
 		window.draw(bg);
 
@@ -312,6 +336,7 @@ int main( int argc, char *argv[] ){
 				level=3;
 				acacia.position=sf::Vector2f{ 800 , 780 };
 			}
+			window.draw(lvl2);
 		}
 		else if(level == 3){
 			acacia.draw( window );
@@ -352,6 +377,12 @@ int main( int argc, char *argv[] ){
 				wall3_1.draw(window);
 			}
 			wall3_2.draw(window);
+			if(item3_4.pickedUp == false){
+				window.draw(lvl3);
+			}
+			else{
+				window.draw(ending);
+			}
 		}
 
 		for( auto & action : actions ){

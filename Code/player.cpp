@@ -4,7 +4,6 @@
 player::player( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f size ) :
     drawable(window), position(position), size(size){
         acacia.setFillColor(sf::Color(0, 0, 0, 0));
-        jumping=false;
         maxY = 40;
         gravity = sf::Vector2f (0.0, 1.0);
         velocity = sf::Vector2f (0.0, 2.5);
@@ -120,18 +119,10 @@ void player::draw( sf::RenderWindow & window ) {
 
 void player::move( sf::Vector2f delta ){
 	position += delta;
-    if (delta.x>0){
-        left=false;
-    }else if(delta.x<0){
-        left=true;
-    }
-//    std::cout<<delta.x<<"\n";
-//    velocity += delta;
 }
 
 void player::jump( ){
     hitbox = acacia.getGlobalBounds();
-//    hitboxTest = acacia.getGlobalBounds();
     jumping = true;
 
     if(velocity.y < maxY) {
@@ -141,7 +132,6 @@ void player::jump( ){
 
 void player::update(){
     hitbox = acacia.getGlobalBounds();
-//    hitboxTest = acacia.getGlobalBounds();
     move(velocity);
 }
 

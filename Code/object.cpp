@@ -7,7 +7,6 @@ object::object( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f s
 void object::draw( sf::RenderWindow & window ){
     rectangle.setSize(sf::Vector2f(size));
     rectangle.setPosition(position);
-//    rectangle.setFillColor(sf::Color( 0, 200, 200));
     window.draw(rectangle);
     
     sf::Texture texture;
@@ -51,7 +50,6 @@ void object::text(player acacia){
     // error...
     }
     else{
-//        for(int i=0;i<10;i++){
         if (type<3){
         text.setString("Grabbed item");
         }else if(type==3){
@@ -59,6 +57,7 @@ void object::text(player acacia){
         }else if(type==4){
             text.setString("Opened Gate");
         }
+        
         text.setCharacterSize(20);
         text.setFillColor(sf::Color::White);
         text.setStyle(sf::Text::Bold);

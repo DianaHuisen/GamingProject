@@ -27,7 +27,7 @@ void wall::update( player & acacia ){
     hitbox = rect.getGlobalBounds();
     
     if (hitbox.intersects(acacia.hitbox)){
-        if (acacia.left){
+        if (position.x<acacia.position.x){
             acacia.move(sf::Vector2f(10.0, 0.0));
         }else{
             acacia.move(sf::Vector2f(-10.0, 0.0));

@@ -28,8 +28,8 @@ void object::text(player acacia){
     }
     else{
         text.setString("Grabbed item");
-        text.setCharacterSize(10);
-        text.setFillColor(sf::Color::Blue);
+        text.setCharacterSize(20);
+        text.setFillColor(sf::Color::White);
         text.setStyle(sf::Text::Bold);
         text.setPosition((acacia.position.x + 50.f), (acacia.position.y - 20.f));
         window.draw(text);

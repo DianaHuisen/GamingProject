@@ -11,7 +11,7 @@ public:
     bool pickedUp;
     sf::RectangleShape rectangle;
     
-    object( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );
+    object( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size), int type=0 );
     
     void draw( sf::RenderWindow & window ) override;
     void update( player acacia );
@@ -21,6 +21,7 @@ public:
 private:
 	sf::Vector2f position;
 	sf::Vector2f size;
+    int type;
 };
 
 #endif

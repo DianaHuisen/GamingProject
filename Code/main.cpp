@@ -172,10 +172,12 @@ int main( int argc, char *argv[] ){
 	sf::Text story2;
 	sf::Text contin;
 	sf::Text movement;
+	sf::Text lvl1;
 	story1.setFont(font);
 	story2.setFont(font);
 	contin.setFont(font);
 	movement.setFont(font);
+	lvl1.setFont(font);
 
 	if (!font.loadFromFile("aller.ttf")){
 		// error...
@@ -204,27 +206,33 @@ int main( int argc, char *argv[] ){
 		contin.setCharacterSize(30);
 		contin.setFillColor(sf::Color::White);
 
+		//Level 1 storytext
+		lvl1.setString("Collect the two berries");
+		lvl1.setCharacterSize(15);
+		lvl1.setFillColor(sf::Color::White);
+
 		window.draw(contin); 
 		window.draw(story1);
 		window.draw(story2);
 		window.draw(movement);
-		}
+	}
 
-		while(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) == false){
-			window.display(); 
-			sf::Event event; 
-			while( window.pollEvent(event) ){ 
-				if( event.type == sf::Event::Closed ){ 
-					window.close(); 
-				} 
+	while(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) == false){
+		window.display(); 
+		sf::Event event; 
+		while( window.pollEvent(event) ){ 
+			if( event.type == sf::Event::Closed ){ 
+				window.close(); 
 			} 
-		}
+		} 
+	}
 
 	while (window.isOpen()) {
 		window.clear();
 		//these 2 lines connect the view window to the player position
 		view.setCenter( acacia.position.x, acacia.position.y);
 		window.setView(view);
+		lvl1.setPosition(view.getCenter() + sf::Vector2f( -240.0, -190.0 ));
 
 		window.draw(bg);
 
@@ -261,6 +269,7 @@ int main( int argc, char *argv[] ){
 				level=2;
 				acacia.position=sf::Vector2f{ 0 , 780 };
 			}
+			window.draw(lvl1);
 		}
 		else if(level == 2){
 			acacia.draw( window );

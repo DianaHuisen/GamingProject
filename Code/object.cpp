@@ -23,6 +23,8 @@ void object::draw( sf::RenderWindow & window ){
         }else{
             texture.loadFromFile("sprites/shroomSmall.png");
         }
+    }else if(type==4){
+        texture.loadFromFile("sprites/gateSmalll.png");
     }else{
         texture.loadFromFile("sprites/empty.png");
     }
@@ -50,7 +52,13 @@ void object::text(player acacia){
     }
     else{
 //        for(int i=0;i<10;i++){
+        if (type<3){
         text.setString("Grabbed item");
+        }else if(type==3){
+            text.setString("Pressed mushroom");
+        }else if(type==4){
+            text.setString("Opened Gate");
+        }
         text.setCharacterSize(20);
         text.setFillColor(sf::Color::White);
         text.setStyle(sf::Text::Bold);

@@ -96,7 +96,7 @@ int main( int argc, char *argv[] ){
 	wall wall2_3ext { window, sf::Vector2f(1230, 280 ), sf::Vector2f( 50 , 300) };
 	object item2_1 {window, sf::Vector2f(170, 120), sf::Vector2f(30,30), 3}; // connected to platform 2_10
 	object item2_2 {window, sf::Vector2f(900, 820), sf::Vector2f(30,30), 2}; // connected to floor
-	object item2_3 {window, sf::Vector2f(1260, 90), sf::Vector2f(30,30), 2}; // connected to platform 2_20
+	object item2_3 {window, sf::Vector2f(1230, 16), sf::Vector2f(80,104), 4}; // connected to platform 2_20
 
 	platform level3_1{ window, sf::Vector2f( 200, 700 ), sf::Vector2f( 80 , 20) };
 	platform level3_2{ window, sf::Vector2f( 500, 700 ), sf::Vector2f( 80 , 20) };
@@ -222,7 +222,7 @@ int main( int argc, char *argv[] ){
 		lvl1.setFillColor(sf::Color::White);
 
 		//Level 2 storytext
-		lvl2.setString("Find the key and open the door");
+		lvl2.setString("Find the key and open the gate");
 		lvl2.setCharacterSize(15);
 		lvl2.setFillColor(sf::Color::White);
 		
@@ -300,6 +300,8 @@ int main( int argc, char *argv[] ){
 			window.draw(lvl1);
 		}
 		else if(level == 2){
+            item2_3.draw(window);
+            
 			acacia.draw( window );
 			Floor.draw( window );
 			left.draw( window );
@@ -335,7 +337,7 @@ int main( int argc, char *argv[] ){
 			level2_20.draw(window); 
 			item2_1.draw(window);
 			item2_2.draw(window);
-			item2_3.draw(window);
+//			item2_3.draw(window);
 			if (item2_3.pickedUp){
 				level=3;
 				acacia.position=sf::Vector2f{ 800 , 780 };

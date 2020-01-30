@@ -67,8 +67,9 @@ int main( int argc, char *argv[] ){
 	wall wall1_1 { window, sf::Vector2f( 750, 520 ), sf::Vector2f( 50 , 330) };
 	wall wall1_2 { window, sf::Vector2f( 780, 200 ), sf::Vector2f( 500 , 300) };
 	object item1_1 {window, sf::Vector2f(100, 220), sf::Vector2f(30,30), 3}; // connected to platform 1_6
-	object item1_2 {window, sf::Vector2f( 850, 830), sf::Vector2f(20,20), 1}; // connected to floor
-	object item1_3 {window, sf::Vector2f(1650, 230), sf::Vector2f(20,20), 1}; // connected to platform 1_13
+	object item1_2 {window, sf::Vector2f( 280, 830), sf::Vector2f(20,20), 1};
+    object item1_3 {window, sf::Vector2f( 850, 830), sf::Vector2f(20,20), 1}; // connected to floor
+	object item1_4 {window, sf::Vector2f(1650, 230), sf::Vector2f(20,20), 1}; // connected to platform 1_13
 
 	platform level2_1{ window, sf::Vector2f( 0, 700 ), sf::Vector2f( 80 , 20) };
 	platform level2_2{ window, sf::Vector2f( 150, 550 ), sf::Vector2f( 80 , 20) };
@@ -90,12 +91,13 @@ int main( int argc, char *argv[] ){
 	platform level2_18{ window, sf::Vector2f( 1530, 270), sf::Vector2f( 80 , 20) };
 	platform level2_19{ window, sf::Vector2f( 1380, 120 ), sf::Vector2f( 80 , 20) };
 	platform level2_20{ window, sf::Vector2f( 1230, 120 ), sf::Vector2f( 80 , 20) };
+    platform level2_21{ window, sf::Vector2f( 905, 830 ), sf::Vector2f( 40 , 20) };
 	wall wall2_1 { window, sf::Vector2f(850, 560 ), sf::Vector2f( 50 , 290) };
-	wall wall2_2 { window, sf::Vector2f(970, 560 ), sf::Vector2f( 50 , 290) };
+	wall wall2_2 { window, sf::Vector2f(960, 560 ), sf::Vector2f( 50 , 290) };
 	wall wall2_3 { window, sf::Vector2f(1230, 590 ), sf::Vector2f( 50 , 260) };
 	wall wall2_3ext { window, sf::Vector2f(1230, 280 ), sf::Vector2f( 50 , 300) };
 	object item2_1 {window, sf::Vector2f(170, 120), sf::Vector2f(30,30), 3}; // connected to platform 2_10
-	object item2_2 {window, sf::Vector2f(900, 820), sf::Vector2f(30,30), 2}; // connected to floor
+	object item2_2 {window, sf::Vector2f(910, 800), sf::Vector2f(30,30), 2}; // connected to floor
 	object item2_3 {window, sf::Vector2f(1230, 16), sf::Vector2f(80,104), 4}; // connected to platform 2_20
 
 	platform level3_1{ window, sf::Vector2f( 200, 700 ), sf::Vector2f( 80 , 20) };
@@ -123,10 +125,11 @@ int main( int argc, char *argv[] ){
 	platform level3_23{ window, sf::Vector2f( 2000, 250 ), sf::Vector2f( 80 , 20) };
 	platform level3_24{ window, sf::Vector2f( 2150, 100 ), sf::Vector2f( 80 , 20) };
     platform level3_25{ window, sf::Vector2f( 2230, 100 ), sf::Vector2f( 80 , 20) };
-	object item3_1 {window, sf::Vector2f(230, 680), sf::Vector2f(20,20), 1}; // connected to platform 3_1
-	object item3_2 {window, sf::Vector2f(230, 80), sf::Vector2f(20,20), 1}; // connected to platform 3_13
-	object item3_3 {window, sf::Vector2f(2180, 80), sf::Vector2f(20,20), 1}; // connected to platform 3_24
-	object item3_4 {window, sf::Vector2f(2000, 820), sf::Vector2f(30,30), 2}; // connected to floor
+    platform level3_26{ window, sf::Vector2f( 2000, 830), sf::Vector2f( 40 , 20) };
+	object item3_1 {window, sf::Vector2f(230, 670), sf::Vector2f(30,30), 3}; // connected to platform 3_1
+	object item3_2 {window, sf::Vector2f(230, 70), sf::Vector2f(30,30), 3}; // connected to platform 3_13
+	object item3_3 {window, sf::Vector2f(2180, 70), sf::Vector2f(30,30), 3}; // connected to platform 3_24
+	object item3_4 {window, sf::Vector2f(2005, 800), sf::Vector2f(30,30), 2}; // connected to floor
 	wall wall3_11 { window, sf::Vector2f(980, -100 ), sf::Vector2f( 50 , 350 ) };
     wall wall3_12 { window, sf::Vector2f(980, 270 ), sf::Vector2f( 50 , 280) };
     wall wall3_13 { window, sf::Vector2f(980,  570), sf::Vector2f( 50 , 280) };
@@ -153,6 +156,7 @@ int main( int argc, char *argv[] ){
 				item1_1.interact(acacia);
 				item1_2.interact(acacia);
 				item1_3.interact(acacia);
+                item1_4.interact(acacia);
 			} 
 			else if(level==2){
 				item2_1.interact(acacia);
@@ -174,16 +178,24 @@ int main( int argc, char *argv[] ){
 	sf::Font font;
 	sf::Text story1;
 	sf::Text story2;
+    sf::Text movement;
+    sf::Texture BigShroom;
+	sf::Sprite Shroom;
+    sf::Text shroomText;
+    sf::Texture BigWall;
+	sf::Sprite Wall;
+    sf::Text wallText;
 	sf::Text contin;
-	sf::Text movement;
 	sf::Text lvl1;
 	sf::Text lvl2;
 	sf::Text lvl3;
 	sf::Text ending;
 	story1.setFont(font);
 	story2.setFont(font);
-	contin.setFont(font);
 	movement.setFont(font);
+    shroomText.setFont(font);
+    wallText.setFont(font);
+    contin.setFont(font);
 	lvl1.setFont(font);
 	lvl2.setFont(font);
 	lvl3.setFont(font);
@@ -205,19 +217,39 @@ int main( int argc, char *argv[] ){
 
 		//Movement
 		movement.setString("Use the arrowkeys to move around\nUse the \"E\" to interact with objects");
-		movement.setPosition(sf::Vector2f( 450.0, 550.0 ));
+		movement.setPosition(sf::Vector2f( 450.0, 240.0 ));
 		movement.setCharacterSize(20);
 		movement.setStyle(sf::Text::Italic);
 		movement.setFillColor(sf::Color::White);
 
-		//Spacebar text
-		contin.setString("Press spacebar to continue");
-		contin.setPosition(sf::Vector2f( 430.0, 700.0 ));
+        BigShroom.loadFromFile("sprites/shroomBig.png");
+        Shroom.move(sf::Vector2f(350,420));
+        Shroom.setTexture(BigShroom);
+        
+        shroomText.setString("This is a mushroom button\nIt helps you unlock new areas");
+		shroomText.setPosition(sf::Vector2f( 300.0, 600.0 ));
+		shroomText.setCharacterSize(20);
+		shroomText.setStyle(sf::Text::Italic);
+		shroomText.setFillColor(sf::Color::White);
+
+        BigWall.loadFromFile("sprites/wallPlantTall.png");
+        Wall.move(sf::Vector2f(800,250));
+        Wall.setTexture(BigWall);
+        
+        wallText.setString("This is a wall plant\nIt blocks your way");
+		wallText.setPosition(sf::Vector2f( 750.0, 600.0 ));
+		wallText.setCharacterSize(20);
+		wallText.setStyle(sf::Text::Italic);
+		wallText.setFillColor(sf::Color::White);
+
+		//Continue text
+		contin.setString("Press \"E\" to continue");
+		contin.setPosition(sf::Vector2f( 470.0, 800.0 ));
 		contin.setCharacterSize(30);
 		contin.setFillColor(sf::Color::White);
 
 		//Level 1 storytext
-		lvl1.setString("Collect the two berries");
+		lvl1.setString("You're hungry. Eat three berries");
 		lvl1.setCharacterSize(15);
 		lvl1.setFillColor(sf::Color::White);
 
@@ -227,7 +259,7 @@ int main( int argc, char *argv[] ){
 		lvl2.setFillColor(sf::Color::White);
 		
 		//Level 3 storytext
-		lvl3.setString("Collect three berries and find the hidden key");
+		lvl3.setString("Press the three mushrooms and find the hidden key");
 		lvl3.setCharacterSize(15);
 		lvl3.setFillColor(sf::Color::White);
 		
@@ -236,13 +268,18 @@ int main( int argc, char *argv[] ){
 		ending.setCharacterSize(15);
 		ending.setFillColor(sf::Color::White);
 
-		window.draw(contin); 
+		
 		window.draw(story1);
 		window.draw(story2);
 		window.draw(movement);
+        window.draw(Shroom);
+        window.draw(shroomText);
+        window.draw(Wall);
+        window.draw(wallText);
+        window.draw(contin); 
 	}
 
-	while(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) == false){
+	while(sf::Keyboard::isKeyPressed(sf::Keyboard::E) == false){
 		window.display(); 
 		sf::Event event; 
 		while( window.pollEvent(event) ){ 
@@ -284,6 +321,7 @@ int main( int argc, char *argv[] ){
 			item1_1.draw(window);
 			item1_2.draw(window);
 			item1_3.draw(window);
+            item1_4.draw(window);
 			if(item1_1.pickedUp){
 				level1_7.draw(window);
 				level1_8.draw(window);
@@ -293,13 +331,14 @@ int main( int argc, char *argv[] ){
 				level1_12.draw(window);
 				level1_13.draw(window);
 			}
-			if (item1_2.pickedUp && item1_3.pickedUp){
+			if (item1_2.pickedUp && item1_3.pickedUp && item1_4.pickedUp){
 				level=2;
 				acacia.position=sf::Vector2f{ 0 , 780 };
 			}
 			window.draw(lvl1);
 		}
 		else if(level == 2){
+            //Item drawn befor acacia, so they pass in front
             item2_3.draw(window);
             
 			acacia.draw( window );
@@ -334,7 +373,8 @@ int main( int argc, char *argv[] ){
 			level2_17.draw(window); 
 			level2_18.draw(window);
 			level2_19.draw(window);
-			level2_20.draw(window); 
+			level2_20.draw(window);
+            level2_21.draw(window);
 			item2_1.draw(window);
 			item2_2.draw(window);
 //			item2_3.draw(window);
@@ -374,6 +414,7 @@ int main( int argc, char *argv[] ){
 			level3_23.draw(window);
 			level3_24.draw(window);
             level3_25.draw(window);
+            level3_26.draw(window);
 			item3_1.draw(window);
 			item3_2.draw(window);
 			item3_3.draw(window);
@@ -426,7 +467,8 @@ int main( int argc, char *argv[] ){
 			level1_13.update(acacia);
 			item1_1.update(acacia);
 			item1_2.update(acacia);
-			item1_3.update(acacia); 
+			item1_3.update(acacia);
+            item1_4.update(acacia); 
 		}
 
 		else if(level == 2){
@@ -465,6 +507,7 @@ int main( int argc, char *argv[] ){
 			level2_18.update(acacia);
 			level2_19.update(acacia);
 			level2_20.update(acacia);
+            level2_21.update(acacia);
 			item2_1.update(acacia);
 			item2_2.update(acacia);
 			item2_3.update(acacia);
@@ -501,6 +544,7 @@ int main( int argc, char *argv[] ){
 			level3_23.update(acacia);
 			level3_24.update(acacia);
             level3_25.update(acacia);
+            level3_26.update(acacia);
 			item3_1.update(acacia);
 			item3_2.update(acacia);
 			item3_3.update(acacia);

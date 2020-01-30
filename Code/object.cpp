@@ -50,12 +50,16 @@ void object::text(player acacia){
     // error...
     }
     else{
-        if (type<3){
-        text.setString("Grabbed item");
+        if (type==1){
+            text.setString("Ate berry");
+        }else if(type==2){
+            text.setString("Grabbed key");
         }else if(type==3){
             text.setString("Pressed mushroom");
         }else if(type==4){
             text.setString("Opened Gate");
+        }else{
+            text.setString("Grabbed item");
         }
         
         text.setCharacterSize(20);

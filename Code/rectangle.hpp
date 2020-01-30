@@ -4,17 +4,22 @@
 #include <SFML/Graphics.hpp>
 #include "drawable.hpp"
 
+/// @file
 
+/// Brief, this class is to help create rectangle shapes
+/*
+    The class sets up the variables needed to draw a rectangle: 
+    the cooridinate of the top corner(position), the size and a bigger hitbox for jumping.
+*/
 class rectangle: public drawable {
 public:
     sf::RectangleShape rect;
     
-    rectangle( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );
-    
-    void draw( sf::RenderWindow & window ) override;
-    void update( );
+    rectangle( sf::RenderWindow & window ):
+        drawable( window ){}
 
 protected:
+    sf::FloatRect hitboxBigger;
 	sf::Vector2f position;
 	sf::Vector2f size;
 };

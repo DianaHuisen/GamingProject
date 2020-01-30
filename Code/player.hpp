@@ -15,12 +15,12 @@ class player: public drawable {
 public:
     sf::RectangleShape acacia;
     sf::Vector2f position;
+    sf::Vector2f size;
+    sf::Vector2f velocity;
     bool jumping;
     float maxY;
-    sf::Vector2f velocity;
-	sf::Vector2f size;
 
-    player( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );
+    player( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f size );
 
     /// Brief, this function sets the player up to be drawn in the window    
     /*
@@ -48,10 +48,10 @@ public:
         Needs to be put after the player is drawn using the draw function, in between a window.clear() and a window.display().
         Uses the move function to move the player to its new position.
     */
-    void update();
+    void update( );
     
 private:
-    int animCount=0;
+    int animCount = 0;
 };
 
 #endif

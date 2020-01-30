@@ -9,7 +9,7 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := rectangle.cpp floor.cpp platform.cpp wall.cpp player.cpp object.cpp
+SOURCES := floor.cpp platform.cpp wall.cpp player.cpp object.cpp
 
 # header files in this project
 HEADERS := drawable.hpp rectangle.hpp floor.hpp platform.hpp wall.hpp player.hpp object.hpp

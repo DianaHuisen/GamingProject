@@ -1,43 +1,44 @@
 #include "floor.hpp"
-#include <iostream>
 
-floor::floor( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f size ) :
-    rectangle(window, position, size), position(position), size(size){rect.setFillColor(sf::Color( 0, 200, 0));}
+floor::floor( sf::RenderWindow & window, sf::Vector2f Position, sf::Vector2f Size ) :
+    rectangle(window){
+        rect.setFillColor(sf::Color(110, 60, 30));
+        position = Position;
+        size = Size;
+    }
 
 void floor::draw( sf::RenderWindow & window ){
     rect.setSize(sf::Vector2f(size));
     rect.setPosition(position);
-    rect.setFillColor(sf::Color( 110, 60, 30));
     window.draw(rect);
 }
 
 void floor::update( player & acacia ){
-
     hitbox = rect.getGlobalBounds();
     hitboxBigger = rect.getGlobalBounds();
-    hitboxBigger.top = hitboxBigger.top -2 ;
+    hitboxBigger.top = hitboxBigger.top - 2 ;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==false){
+    if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
         if(acacia.velocity.y < acacia.maxY){
             acacia.velocity += acacia.gravity;
         }
-        if (acacia.jumping){
+        if(acacia.jumping){
             acacia.jumping = false;
         }
         if(hitboxBigger.intersects(acacia.hitbox)){
             acacia.jumping = false;
-            acacia.velocity.y= 0.0;
-            acacia.position.y = hitbox.top-(acacia.size.y);
+            acacia.velocity.y = 0.0;
+            acacia.position.y = hitbox.top - acacia.size.y;
         }
     }
 
-    if ((hitbox.intersects(acacia.hitbox)) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)==true){
+    if((hitbox.intersects(acacia.hitbox)) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
         if(acacia.velocity.y < acacia.maxY){
             acacia.velocity += acacia.gravity;
         }
-        if (acacia.jumping){
+        if(acacia.jumping){
             acacia.jumping = false;
-             acacia.velocity.y=-19.0;
+            acacia.velocity.y = -19.0;
         }
         else{
             acacia.velocity.y = 0.0;

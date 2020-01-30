@@ -15,7 +15,7 @@
 class wall: public rectangle {
 public:
     
-    wall( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size), bool sidewall=false);
+    wall( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f size, bool treeTrunk=false);
     
     /// Brief, draw function sets up the wall for the window
     /* 
@@ -34,9 +34,7 @@ public:
     void update( player & acacia );
 
 private:
-	sf::Vector2f position;
-	sf::Vector2f size;
-    bool sidewall;
+    bool treeTrunk;
 };
 
 #endif

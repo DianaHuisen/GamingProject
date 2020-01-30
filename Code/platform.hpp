@@ -32,10 +32,6 @@ public:
         This needs to be put in between a window.clear() and a window.display, after the platform.draw(window)
     */
     void update( player & acacia );
-
-private:
-	sf::Vector2f position;
-	sf::Vector2f size;
 };
 
 #endif

@@ -15,7 +15,7 @@
 class floor: public rectangle {
 public:
     
-    floor( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f(size) );
+    floor( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f size );
     
     /// Brief, the draw function sets up the floor for the window
     /* 
@@ -33,9 +33,6 @@ public:
     */
     void update( player & acacia );
 
-private:
-	sf::Vector2f position;
-	sf::Vector2f size;
 };
 
 #endif

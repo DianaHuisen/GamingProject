@@ -1,80 +1,75 @@
 #include "object.hpp"
-#include <iostream>
 
 object::object( sf::RenderWindow & window, sf::Vector2f position, sf::Vector2f size, int type ) :
-    drawable(window), position(position), size(size), type(type){pickedUp=false;}
+    drawable(window), position(position), size(size), type(type){pickedUp = false;}
 
 void object::draw( sf::RenderWindow & window ){
-    rectangle.setSize(sf::Vector2f(size));
-    rectangle.setPosition(position);
-    window.draw(rectangle);
+    rect.setSize(sf::Vector2f(size));
+    rect.setPosition(position);
     
     sf::Texture texture;
     sf::Sprite sprite;
-    
-    if (type==1 and !pickedUp){
+    if(type == 1 && !pickedUp){
         texture.loadFromFile("sprites/berry-small.png");
-    }else if(type==2 and !pickedUp){
+    }
+    else if(type == 2 && !pickedUp){
         texture.loadFromFile("sprites/keySmall.png");
-    }else if(type==3){
-        if (pickedUp){
+    }
+    else if(type == 3){
+        if(pickedUp){
             texture.loadFromFile("sprites/shroomDownSmall.png");
-        }else{
+        }
+        else{
             texture.loadFromFile("sprites/shroomSmall.png");
         }
-    }else if(type==4){
+    }
+    else if(type == 4){
         texture.loadFromFile("sprites/gateSmalll.png");
-    }else{
+    }
+    else{
         texture.loadFromFile("sprites/empty.png");
     }
-    rectangle.setFillColor(sf::Color( 0, 0, 0, 0));
+    rect.setFillColor(sf::Color(0, 0, 0, 0));
     sprite.setTexture(texture);
-    sprite.setTextureRect(sf::IntRect(0,0,size.x,size.y));
-    sprite.move(sf::Vector2f(position.x,position.y));
+    sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+    sprite.move(sf::Vector2f(position.x, position.y));
     window.draw(sprite);
 }
 
-void object::interact(player acacia){
-    hitbox = rectangle.getGlobalBounds();
-    if(hitbox.intersects(acacia.hitbox) and !pickedUp){
+void object::interact( player acacia ){
+    hitbox = rect.getGlobalBounds();
+    if(hitbox.intersects(acacia.hitbox) && !pickedUp){
         text(acacia);
-        pickedUp=true;
+        pickedUp = true;
     }
 }
 
-void object::text(player acacia){
+void object::text( player acacia ){
     sf::Font font;
     sf::Text text;
     text.setFont(font);
-    if (!font.loadFromFile("aller.ttf")){
-    // error...
-    }
-    else{
-        if (type==1){
+    if(font.loadFromFile("aller.ttf")){
+        if(type == 1){
             text.setString("Ate berry");
-        }else if(type==2){
+        }
+        else if(type == 2){
             text.setString("Grabbed key");
-        }else if(type==3){
+        }
+        else if(type == 3){
             text.setString("Pressed mushroom");
-        }else if(type==4){
+        }
+        else if(type == 4){
             text.setString("Opened Gate");
-        }else{
+        }
+        else{
             text.setString("Grabbed item");
         }
-        
         text.setCharacterSize(20);
         text.setFillColor(sf::Color::White);
         text.setStyle(sf::Text::Bold);
-        text.setPosition((acacia.position.x + 50.f), (acacia.position.y - 20.f));
+        text.setPosition((acacia.position.x + 50), (acacia.position.y - 20));
         window.draw(text);
         window.display();
         sf::sleep(sf::milliseconds(1000));
-        
-//        }
     }
-}
-
-
-void object::update( player acacia ){
-    hitbox = rectangle.getGlobalBounds();
 }

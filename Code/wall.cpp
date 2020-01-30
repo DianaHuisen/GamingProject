@@ -14,7 +14,7 @@ void wall::draw( sf::RenderWindow & window ){
     if(!treeTrunk){
         rect.setFillColor(sf::Color(0, 0, 0, 0));
         sf::Texture texture;
-        texture.loadFromFile("sprites/wallPlantTall.png");
+        texture.loadFromFile("assets/wallPlantTall.png");
         sf::Sprite sprite;
         sprite.setTexture(texture);
         sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));

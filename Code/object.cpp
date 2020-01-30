@@ -10,24 +10,24 @@ void object::draw( sf::RenderWindow & window ){
     sf::Texture texture;
     sf::Sprite sprite;
     if(type == 1 && !pickedUp){
-        texture.loadFromFile("sprites/berry-small.png");
+        texture.loadFromFile("assets/berry-small.png");
     }
     else if(type == 2 && !pickedUp){
-        texture.loadFromFile("sprites/keySmall.png");
+        texture.loadFromFile("assets/keySmall.png");
     }
     else if(type == 3){
         if(pickedUp){
-            texture.loadFromFile("sprites/shroomDownSmall.png");
+            texture.loadFromFile("assets/shroomDownSmall.png");
         }
         else{
-            texture.loadFromFile("sprites/shroomSmall.png");
+            texture.loadFromFile("assets/shroomSmall.png");
         }
     }
     else if(type == 4){
-        texture.loadFromFile("sprites/gateSmalll.png");
+        texture.loadFromFile("assets/gateSmalll.png");
     }
     else{
-        texture.loadFromFile("sprites/empty.png");
+        texture.loadFromFile("assets/empty.png");
     }
     rect.setFillColor(sf::Color(0, 0, 0, 0));
     sprite.setTexture(texture);
@@ -48,7 +48,7 @@ void object::text( player acacia ){
     sf::Font font;
     sf::Text text;
     text.setFont(font);
-    if(font.loadFromFile("aller.ttf")){
+    if(font.loadFromFile("assets/aller.ttf")){
         if(type == 1){
             text.setString("Ate berry");
         }

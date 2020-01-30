@@ -13,7 +13,7 @@ void player::draw( sf::RenderWindow & window ){
 	acacia.setPosition(position);
     
     sf::Texture texture;
-    texture.loadFromFile("sprites/SpriteSheetAcaciaMediumSmall.png");
+    texture.loadFromFile("assets/SpriteSheetAcaciaMediumSmall.png");
     sf::IntRect rectSourceSprite(204, 153, 68, 153);
     sf::Sprite sprite(texture,rectSourceSprite);
     sprite.setScale(sf::Vector2f(0.45, 0.45));

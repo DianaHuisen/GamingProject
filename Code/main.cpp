@@ -37,7 +37,7 @@ public:
 };
 
 int main( int argc, char *argv[] ){
-	int level = 3;
+	int level = 1;
 	std::cout << "Starting application 01-05 array of actions\n";
 
 	sf::RenderWindow window{ sf::VideoMode{ 1280, 900 }, "SFML window" };
@@ -135,7 +135,7 @@ int main( int argc, char *argv[] ){
 
 	// BACKGROUND TEXTURE
 	sf::Texture texture;
-	texture.loadFromFile("sprites/bg-3000x1500.jpg");
+	texture.loadFromFile("assets/bg-3000x1500.jpg");
 	sf::Sprite bg;
 	bg.move(sf::Vector2f(-400,-400));
 	bg.setTexture(texture);
@@ -198,7 +198,7 @@ int main( int argc, char *argv[] ){
 	lvl3.setFont(font);
 	ending.setFont(font);
 
-	if (font.loadFromFile("aller.ttf")){
+	if (font.loadFromFile("assets/aller.ttf")){
 		//Storytext
 		story1.setString("You've fallen from the tree!");
 		story1.setPosition(sf::Vector2f( 450.0, 100.0 ));
@@ -217,7 +217,7 @@ int main( int argc, char *argv[] ){
 		movement.setFillColor(sf::Color::White);
         
         //ShroomButton
-        BigShroom.loadFromFile("sprites/shroomBig.png");
+        BigShroom.loadFromFile("assets/shroomBig.png");
         Shroom.move(sf::Vector2f( 350, 420 ));
         Shroom.setTexture(BigShroom);
         
@@ -228,7 +228,7 @@ int main( int argc, char *argv[] ){
 		shroomText.setFillColor(sf::Color::White);
 
         //WallPlant
-        BigWall.loadFromFile("sprites/wallPlantTall.png");
+        BigWall.loadFromFile("assets/wallPlantTall.png");
         Wall.move(sf::Vector2f( 800, 250 ));
         Wall.setTexture(BigWall);
         
@@ -538,6 +538,7 @@ int main( int argc, char *argv[] ){
                 wall3_13.update(acacia);
 			}
 			wall3_2.update(acacia);
+            wall3_3.update(acacia);
 		}
 
 		window.display();
